@@ -1,8 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title>Aralikatte Cafe | Vegetarian South Indian Cafe in Bengaluru</title>
+<meta name="description" content="Aralikatte Cafe is a vegetarian cafe in Bengaluru serving South Indian favourites including crispy dosas and flavorful idlis in a clean, comfortable and relaxed setting.">
+<meta name="theme-color" content="#090909">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23090909'/%3E%3Ccircle cx='32' cy='32' r='23' fill='none' stroke='%23C89B5A' stroke-width='2'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='32' font-style='italic' fill='%23C89B5A' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aralikatte Cafe">
+<meta property="og:locale" content="en_IN">
+<meta property="og:title" content="Aralikatte Cafe | Vegetarian South Indian Cafe in Bengaluru">
+<meta property="og:description" content="A vegetarian cafe in Bengaluru serving South Indian favourites including crispy dosas and flavorful idlis in a clean, comfortable and relaxed setting.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?q=80&w=1200&auto=format&fit=crop">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Aralikatte Cafe | Vegetarian South Indian Cafe in Bengaluru">
+<meta name="twitter:description" content="A vegetarian cafe in Bengaluru serving South Indian favourites including crispy dosas and flavorful idlis in a clean, comfortable and relaxed setting.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?q=80&w=1200&auto=format&fit=crop">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Aralikatte Cafe",
+  "description": "Vegetarian cafe in Bengaluru serving South Indian favourites including dosas and idlis.",
+  "servesCuisine": ["South Indian", "Vegetarian"],
+  "priceRange": "₹1–200",
+  "telephone": "+91 78995 42233",
+  "acceptsReservations": "False",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "75, 80 Feet Rd, Banashankari 6th Stage 1st Block, Jayanagar Housing Society Layout, Subramanyapura",
+    "addressLocality": "Bengaluru",
+    "addressRegion": "Karnataka",
+    "postalCode": "560061",
+    "addressCountry": "IN"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "3.7",
+    "reviewCount": "1085",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+}
+</script>
+
 <script src="./support.js"></script>
 </head>
 <body>
@@ -244,8 +290,8 @@
       <a href="#top" class="nav-logo" style="display:flex;align-items:center;gap:14px;text-decoration:none;color:#F8F2EA;">
         <div style="width:34px;height:34px;flex:0 0 34px;border:1px solid #C89B5A;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#C89B5A;font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;">A</div>
         <div style="line-height:1;">
-          <div style="font-family:'Cormorant Garamond',serif;font-size:21px;letter-spacing:5px;font-weight:600;">ALCHEMY</div>
-          <div class="nav-logo-sub" style="font-size:8px;letter-spacing:4px;color:#C89B5A;margin-top:3px;">COFFEE ROASTERS · JAYANAGAR</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:21px;letter-spacing:5px;font-weight:600;">ARALIKATTE</div>
+          <div class="nav-logo-sub" style="font-size:8px;letter-spacing:4px;color:#C89B5A;margin-top:3px;">VEGETARIAN CAFE · BENGALURU</div>
         </div>
       </a>
       <div class="nav-links" style="display:flex;gap:38px;align-items:center;">
@@ -253,7 +299,7 @@
           <a href="{{ link.href }}" style="text-decoration:none;font-size:12.5px;letter-spacing:2.5px;font-weight:400;color:rgba(248,242,234,.72);transition:color .3s;" style-hover="{ color: '#C89B5A' }">{{ link.label }}</a>
         </sc-for>
       </div>
-      <a href="#visit" class="nav-cta" onClick="{{ onReserve }}" style="border:1px solid #C89B5A;color:#C89B5A;padding:13px 26px;font-size:11px;letter-spacing:2.5px;font-weight:600;text-decoration:none;border-radius:2px;transition:all .35s;background:transparent;" style-hover="{ background: '#C89B5A', color: '#090909' }">RESERVE A TABLE</a>
+      <a href="tel:+917899542233" class="nav-cta" style="border:1px solid #C89B5A;color:#C89B5A;padding:13px 26px;font-size:11px;letter-spacing:2.5px;font-weight:600;text-decoration:none;border-radius:2px;transition:all .35s;background:transparent;" style-hover="{ background: '#C89B5A', color: '#090909' }">CALL US</a>
 
       <!-- mobile menu button -->
       <button class="m-burger" onClick="{{ onToggleMenu }}" aria-label="Open menu" style="{{ burgerStyle }}">
@@ -273,10 +319,10 @@
       </div>
       <div style="{{ drawerFootStyle }}">
         <div style="display:flex;gap:10px;margin-top:26px;">
-          <a href="tel:+918762473937" style="flex:1;text-align:center;background:#C89B5A;color:#090909;padding:15px 10px;border-radius:3px;font-size:11px;letter-spacing:1.8px;font-weight:600;text-decoration:none;">CALL US</a>
+          <a href="tel:+917899542233" style="flex:1;text-align:center;background:#C89B5A;color:#090909;padding:15px 10px;border-radius:3px;font-size:11px;letter-spacing:1.8px;font-weight:600;text-decoration:none;">CALL US</a>
           <a href="#visit" onClick="{{ onCloseMenu }}" style="flex:1;text-align:center;border:1px solid rgba(248,242,234,.25);color:#F8F2EA;padding:15px 10px;border-radius:3px;font-size:11px;letter-spacing:1.8px;font-weight:600;text-decoration:none;">VISIT US</a>
         </div>
-        <div style="margin-top:18px;font-size:9.5px;letter-spacing:2.2px;color:rgba(248,242,234,.42);">OPEN DAILY · 8 AM – 11 PM · JAYANAGAR</div>
+        <div style="margin-top:18px;font-size:9.5px;letter-spacing:2.2px;color:rgba(248,242,234,.42);">OPEN DAILY · CLOSES 11 PM · SUBRAMANYAPURA</div>
       </div>
     </div>
   </div>
@@ -285,26 +331,26 @@
   <header id="top" class="hero" onMouseMove="{{ onHeroMove }}" style="position:relative;z-index:1;max-width:1500px;margin:0 auto;padding:150px 40px 70px;display:grid;grid-template-columns:0.92fr 1.25fr;gap:30px;align-items:center;min-height:100vh;">
     <!-- left copy -->
     <div class="hero-copy">
-      <div class="hero-eyebrow" style="font-size:11px;letter-spacing:4px;color:#C89B5A;margin-bottom:30px;font-weight:500;">SPECIALTY COFFEE · DELICIOUS BITES · GOOD VIBES</div>
+      <div class="hero-eyebrow" style="font-size:11px;letter-spacing:4px;color:#C89B5A;margin-bottom:30px;font-weight:500;">SOUTH INDIAN · PURE VEGETARIAN · BENGALURU</div>
       <h1 class="hero-h1" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(56px,6.4vw,108px);line-height:.94;letter-spacing:-1px;margin-bottom:6px;">
-        Brewed<br>to Perfection.<br><span style="font-style:italic;color:#C89B5A;font-weight:400;">Made for You.</span>
+        South Indian<br>Comfort.<br><span style="font-style:italic;color:#C89B5A;font-weight:400;">Made for You.</span>
       </h1>
       <p class="hero-sub" style="max-width:380px;color:rgba(248,242,234,.62);font-size:15.5px;line-height:1.75;font-weight:300;margin:34px 0 40px;">
-        Alchemy Coffee Roasters is one of Jayanagar's favorite specialty cafés — handcrafted coffee, fresh food, artisanal beverages, and moments worth remembering.
+        Aralikatte Cafe is a vegetarian cafe in Bengaluru serving South Indian favourites — crispy dosas, flavourful idlis and everyday comfort food, in a clean and relaxed setting.
       </p>
       <div class="hero-btns" style="display:flex;gap:16px;margin-bottom:54px;flex-wrap:wrap;">
         <a href="#menu" style="background:{{ accent }};color:#090909;padding:17px 36px;font-size:12px;letter-spacing:2.5px;font-weight:600;text-decoration:none;border-radius:2px;transition:all .35s;box-shadow:0 14px 40px -14px rgba(200,155,90,.7);" style-hover="{ transform: 'translateY(-3px)', boxShadow: '0 22px 50px -14px rgba(200,155,90,.9)' }">EXPLORE MENU</a>
-        <a href="#about" style="border:1px solid rgba(248,242,234,.25);color:#F8F2EA;padding:17px 36px;font-size:12px;letter-spacing:2.5px;font-weight:500;text-decoration:none;border-radius:2px;transition:all .35s;" style-hover="{ borderColor: '#C89B5A', color: '#C89B5A' }">OUR STORY</a>
+        <a href="#visit" style="border:1px solid rgba(248,242,234,.25);color:#F8F2EA;padding:17px 36px;font-size:12px;letter-spacing:2.5px;font-weight:500;text-decoration:none;border-radius:2px;transition:all .35s;" style-hover="{ borderColor: '#C89B5A', color: '#C89B5A' }">VISIT US</a>
       </div>
       <div class="hero-stats" style="display:flex;gap:40px;flex-wrap:wrap;">
         <div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:34px;color:#C89B5A;line-height:1;">4.5<span style="font-size:18px;">★</span></div>
-          <div style="font-size:10.5px;letter-spacing:1.5px;color:rgba(248,242,234,.5);margin-top:7px;">GOOGLE · THOUSANDS<br>OF REVIEWS</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:34px;color:#C89B5A;line-height:1;">3.7<span style="font-size:18px;">★</span></div>
+          <div style="font-size:10.5px;letter-spacing:1.5px;color:rgba(248,242,234,.5);margin-top:7px;">GOOGLE RATING<br>1,085 REVIEWS</div>
         </div>
         <div style="width:1px;background:rgba(248,242,234,.14);"></div>
         <div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:34px;color:#F8F2EA;line-height:1;">8–11</div>
-          <div style="font-size:10.5px;letter-spacing:1.5px;color:rgba(248,242,234,.5);margin-top:7px;">OPEN DAILY<br>8 AM – 11 PM</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:34px;color:#F8F2EA;line-height:1;">₹1–200</div>
+          <div style="font-size:10.5px;letter-spacing:1.5px;color:rgba(248,242,234,.5);margin-top:7px;">PER PERSON<br>PURE VEGETARIAN</div>
         </div>
       </div>
     </div>
@@ -313,14 +359,14 @@
     <div class="hero-visual" style="position:relative;">
       <div style="position:absolute;inset:-8% -4% -8% -4%;background:radial-gradient(55% 55% at 60% 40%, rgba(200,155,90,.22), transparent 72%);filter:blur(20px);"></div>
       <div class="hero-frame" style="position:relative;border-radius:8px;overflow:hidden;transform:translateX({{ heroPx }}px) translateY({{ heroPy }}px);transition:transform .5s cubic-bezier(.16,.84,.44,1);box-shadow:0 60px 120px -40px rgba(0,0,0,.9);">
-        <img class="hero-img" src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=1600&auto=format&fit=crop" alt="Alchemy Coffee Roasters interior" style="width:100%;height:560px;object-fit:cover;display:block;filter:saturate(1.05) contrast(1.03);">
+        <img class="hero-img" src="https://images.unsplash.com/photo-1651684081232-d45d5dcfcbea?q=80&w=1600&auto=format&fit=crop" alt="Bench seating in the cafe dining area" style="width:100%;height:560px;object-fit:cover;display:block;filter:saturate(1.05) contrast(1.03);">
         <div style="position:absolute;inset:0;background:linear-gradient(160deg, rgba(9,9,9,.15), rgba(9,9,9,.55));"></div>
         <!-- glow lights -->
         <div style="position:absolute;top:24%;left:30%;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(200,155,90,.5),transparent 70%);animation:glowPulse 4s ease-in-out infinite;"></div>
         <!-- floating cup w/ steam -->
         <sc-if value="{{ showCup }}" hint-placeholder-val="{{ true }}">
         <div class="hero-cup" style="position:absolute;bottom:-34px;left:-26px;width:210px;height:210px;border-radius:50%;overflow:hidden;border:6px solid #090909;box-shadow:0 30px 70px -20px rgba(0,0,0,.95);transform:translateX({{ cupPx }}px) translateY({{ cupPy }}px);transition:transform .7s cubic-bezier(.16,.84,.44,1);">
-          <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?q=80&w=900&auto=format&fit=crop" alt="latte art" style="width:100%;height:100%;object-fit:cover;">
+          <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?q=80&w=900&auto=format&fit=crop" alt="Idlis served on a banana leaf with chutney" style="width:100%;height:100%;object-fit:cover;">
         </div>
         <!-- steam -->
         <sc-for list="{{ steamPuffs }}" as="s" hint-placeholder-count="3">
@@ -332,17 +378,17 @@
       <div class="hero-rail" style="position:absolute;top:50%;right:-18px;transform:translateY(-50%);background:rgba(25,25,25,.7);backdrop-filter:blur(14px);border:1px solid rgba(200,155,90,.22);border-radius:6px;padding:22px 24px;display:flex;flex-direction:column;gap:20px;min-width:170px;">
         <div class="rail-item">
           <div class="rail-lab" style="font-size:9px;letter-spacing:2px;color:#C89B5A;margin-bottom:5px;">OPEN DAILY</div>
-          <div class="rail-val" style="font-family:'Cormorant Garamond',serif;font-size:17px;">8 AM – 11 PM</div>
+          <div class="rail-val" style="font-family:'Cormorant Garamond',serif;font-size:17px;">Closes 11 PM</div>
         </div>
         <div class="rail-div" style="height:1px;background:rgba(248,242,234,.12);"></div>
         <div class="rail-item">
           <div class="rail-lab" style="font-size:9px;letter-spacing:2px;color:#C89B5A;margin-bottom:5px;">CALL</div>
-          <a href="tel:+918762473937" class="rail-val" style="display:block;font-family:'Cormorant Garamond',serif;font-size:17px;color:inherit;text-decoration:none;white-space:nowrap;">087624 73937</a>
+          <a href="tel:+917899542233" class="rail-val" style="display:block;font-family:'Cormorant Garamond',serif;font-size:17px;color:inherit;text-decoration:none;white-space:nowrap;">078995 42233</a>
         </div>
         <div class="rail-div" style="height:1px;background:rgba(248,242,234,.12);"></div>
         <div class="rail-item">
-          <div class="rail-lab" style="font-size:9px;letter-spacing:2px;color:#C89B5A;margin-bottom:5px;">ORDER ONLINE</div>
-          <div class="rail-val" style="font-family:'Cormorant Garamond',serif;font-size:17px;">Swiggy · Zomato</div>
+          <div class="rail-lab" style="font-size:9px;letter-spacing:2px;color:#C89B5A;margin-bottom:5px;">DINING</div>
+          <div class="rail-val" style="font-family:'Cormorant Garamond',serif;font-size:17px;">Vegetarian Cafe</div>
         </div>
       </div>
     </div>
@@ -351,21 +397,21 @@
   <!-- ============ ABOUT ============ -->
   <section id="about" class="reveal sec about" style="position:relative;z-index:1;max-width:1300px;margin:0 auto;padding:120px 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
     <div class="about-media" style="position:relative;">
-      <img class="about-img" src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=1200&auto=format&fit=crop" alt="cafe craft" style="width:100%;height:540px;object-fit:cover;border-radius:6px;">
-      <img class="about-img2" src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=700&auto=format&fit=crop" alt="latte" style="position:absolute;bottom:-44px;right:-44px;width:230px;height:280px;object-fit:cover;border-radius:6px;border:8px solid #090909;box-shadow:0 30px 60px -24px rgba(0,0,0,.9);">
+      <img class="about-img" src="https://images.unsplash.com/photo-1613292443284-8d10ef9383fe?q=80&w=1200&auto=format&fit=crop" alt="South Indian vegetarian plates served at a cafe table" style="width:100%;height:540px;object-fit:cover;border-radius:6px;">
+      <img class="about-img2" src="https://images.unsplash.com/photo-1680359871322-aabe6b33eff5?q=80&w=700&auto=format&fit=crop" alt="Idlis served with chutneys and sambar" loading="lazy" style="position:absolute;bottom:-44px;right:-44px;width:230px;height:280px;object-fit:cover;border-radius:6px;border:8px solid #090909;box-shadow:0 30px 60px -24px rgba(0,0,0,.9);">
       <div class="about-badge" style="position:absolute;top:-26px;left:-26px;background:#C89B5A;color:#090909;padding:18px 22px;border-radius:4px;text-align:center;">
-        <div class="b-1" style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;line-height:1;">Est.</div>
-        <div class="b-2" style="font-size:10px;letter-spacing:2px;margin-top:4px;">JAYANAGAR</div>
+        <div class="b-1" style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;line-height:1;">80 Ft</div>
+        <div class="b-2" style="font-size:10px;letter-spacing:2px;margin-top:4px;">ROAD · BENGALURU</div>
       </div>
     </div>
     <div class="about-copy">
       <div class="sec-eyebrow" style="font-size:11px;letter-spacing:4px;color:#C89B5A;margin-bottom:24px;">OUR STORY</div>
-      <h2 class="sec-h2" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,4vw,62px);line-height:1.02;letter-spacing:-.5px;margin-bottom:30px;">Where coffee<br>meets <span style="font-style:italic;color:#C89B5A;">craft.</span></h2>
+      <h2 class="sec-h2" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,4vw,62px);line-height:1.02;letter-spacing:-.5px;margin-bottom:30px;">Simple food.<br>Good <span style="font-style:italic;color:#C89B5A;">moments.</span></h2>
       <p style="color:rgba(248,242,234,.66);font-size:16px;line-height:1.85;font-weight:300;margin-bottom:22px;">
-        We are more than a café. We are curators of moments, brewers of experiences, and roasters of stories. Every cup begins with single-origin beans, roasted slowly in-house and brewed with patience.
+        Aralikatte Cafe is a vegetarian cafe in Bengaluru built around South Indian food — the dosas, idlis and everyday favourites people come back for, served the way you remember them.
       </p>
       <p style="color:rgba(248,242,234,.66);font-size:16px;line-height:1.85;font-weight:300;margin-bottom:40px;">
-        Fresh ingredients, honest hospitality, and a love for slow coffee bring our Jayanagar community together — one handcrafted moment at a time.
+        Clean, comfortable and unhurried, with room to sit outside and space to take your time. Come as you are, eat at your own pace, and stay a little longer than you planned.
       </p>
       <div class="about-tags" style="display:flex;gap:14px;flex-wrap:wrap;">
         <sc-for list="{{ aboutTags }}" as="t" hint-placeholder-count="4">
@@ -379,8 +425,8 @@
   <section class="sec craft" style="position:relative;z-index:1;background:#0d0d0d;border-top:1px solid rgba(248,242,234,.06);border-bottom:1px solid rgba(248,242,234,.06);padding:110px 40px;">
     <div style="max-width:1300px;margin:0 auto;">
       <div class="reveal sec-head" style="text-align:center;margin-bottom:70px;">
-        <div class="sec-eyebrow" style="font-size:11px;letter-spacing:4px;color:#C89B5A;margin-bottom:20px;">THE CRAFT</div>
-        <h2 class="sec-h2" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(36px,4vw,58px);line-height:1.05;">From bean to <span style="font-style:italic;color:#C89B5A;">cup.</span></h2>
+        <div class="sec-eyebrow" style="font-size:11px;letter-spacing:4px;color:#C89B5A;margin-bottom:20px;">THE EXPERIENCE</div>
+        <h2 class="sec-h2" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(36px,4vw,58px);line-height:1.05;">Good food, simply <span style="font-style:italic;color:#C89B5A;">enjoyed.</span></h2>
       </div>
       <div class="craft-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
         <sc-for list="{{ craftSteps }}" as="c" hint-placeholder-count="4">
@@ -399,7 +445,7 @@
     <div class="reveal menu-head" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;margin-bottom:46px;">
       <div>
         <div class="sec-eyebrow" style="font-size:11px;letter-spacing:4px;color:#C89B5A;margin-bottom:20px;">THE MENU</div>
-        <h2 class="sec-h2" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,4vw,62px);line-height:1;">Handcrafted, <span style="font-style:italic;color:#C89B5A;">all day.</span></h2>
+        <h2 class="sec-h2" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,4vw,62px);line-height:1;">South Indian favourites, <span style="font-style:italic;color:#C89B5A;">served fresh.</span></h2>
       </div>
       <div class="menu-searchwrap" style="position:relative;">
         <input class="menu-search" type="search" inputmode="search" value="{{ query }}" onInput="{{ onSearch }}" placeholder="Search the menu…" style="background:#131313;border:1px solid rgba(248,242,234,.14);border-radius:40px;padding:14px 22px 14px 46px;color:#F8F2EA;font-size:13px;width:260px;font-family:'Inter',sans-serif;outline:none;">
@@ -421,14 +467,14 @@
           <div class="menu-imgwrap" style="position:relative;height:{{ cardImgH }};overflow:hidden;">
             <img src="{{ item.img }}" alt="{{ item.name }}" style="width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,.84,.44,1);" style-hover="{ transform: 'scale(1.08)' }">
             <sc-if value="{{ item.featured }}" hint-placeholder-val="{{ true }}">
-              <span style="position:absolute;top:12px;left:12px;background:rgba(200,155,90,.92);color:#090909;font-size:9px;letter-spacing:1.5px;font-weight:600;padding:6px 11px;border-radius:30px;">CHEF'S PICK</span>
+              <span style="position:absolute;top:12px;left:12px;background:rgba(200,155,90,.92);color:#090909;font-size:9px;letter-spacing:1.5px;font-weight:600;padding:6px 11px;border-radius:30px;">POPULAR</span>
             </sc-if>
             <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(9,9,9,.7), transparent 55%);"></div>
             <sc-if value="{{ cardOverlay }}" hint-placeholder-val="{{ false }}">
               <div style="position:absolute;left:20px;right:20px;bottom:18px;">
                 <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;">
                   <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;line-height:1.1;">{{ item.name }}</h3>
-                  <span style="color:#C89B5A;font-size:16px;font-weight:600;white-space:nowrap;">{{ item.price }}</span>
+                  <span style="color:#C89B5A;font-size:16px;font-weight:600;white-space:nowrap;">{{ item.tag }}</span>
                 </div>
                 <p style="color:rgba(248,242,234,.62);font-size:12px;line-height:1.55;font-weight:300;margin-top:7px;">{{ item.desc }}</p>
               </div>
@@ -438,7 +484,7 @@
           <div style="padding:22px 22px 24px;">
             <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:9px;">
               <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;line-height:1.1;">{{ item.name }}</h3>
-              <span style="color:#C89B5A;font-size:16px;font-weight:600;white-space:nowrap;">{{ item.price }}</span>
+              <span style="color:#C89B5A;font-size:16px;font-weight:600;white-space:nowrap;">{{ item.tag }}</span>
             </div>
             <p style="color:rgba(248,242,234,.5);font-size:12.5px;line-height:1.6;font-weight:300;">{{ item.desc }}</p>
           </div>
@@ -456,12 +502,12 @@
     <div style="max-width:1340px;margin:0 auto;">
       <div class="reveal sec-head" style="text-align:center;margin-bottom:60px;">
         <div class="sec-eyebrow" style="font-size:11px;letter-spacing:4px;color:#C89B5A;margin-bottom:20px;">GALLERY</div>
-        <h2 class="sec-h2" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(36px,4vw,58px);">Moments at <span style="font-style:italic;color:#C89B5A;">Alchemy.</span></h2>
+        <h2 class="sec-h2" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(36px,4vw,58px);">Moments at <span style="font-style:italic;color:#C89B5A;">Aralikatte.</span></h2>
       </div>
       <div class="gallery-grid" style="columns:3;column-gap:18px;">
         <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="9">
           <div class="gallery-item" style="break-inside:avoid;margin-bottom:18px;border-radius:6px;overflow:hidden;position:relative;">
-            <img src="{{ g.src }}" alt="gallery" style="width:100%;display:block;transition:all .6s;filter:saturate(1.02);" style-hover="{ transform: 'scale(1.05)', filter: 'saturate(1.15) brightness(1.05)' }">
+            <img src="{{ g.src }}" alt="{{ g.alt }}" loading="lazy" style="width:100%;display:block;transition:all .6s;filter:saturate(1.02);" style-hover="{ transform: 'scale(1.05)', filter: 'saturate(1.15) brightness(1.05)' }">
           </div>
         </sc-for>
       </div>
@@ -473,21 +519,22 @@
     <div class="reviews-grid" style="display:grid;grid-template-columns:0.8fr 1.2fr;gap:70px;align-items:center;">
       <div class="reveal">
         <div class="sec-eyebrow" style="font-size:11px;letter-spacing:4px;color:#C89B5A;margin-bottom:24px;">WHAT PEOPLE SAY</div>
-        <div class="reviews-score" style="font-family:'Cormorant Garamond',serif;font-size:96px;line-height:.9;color:#C89B5A;">4.3<span style="font-size:34px;color:#F8F2EA;">/5</span></div>
-        <div style="color:#C89B5A;font-size:20px;letter-spacing:3px;margin:14px 0 10px;">★★★★<span style="opacity:.35">★</span></div>
-        <p style="color:rgba(248,242,234,.5);font-size:14px;margin-bottom:34px;">Based on 1,000+ Google reviews</p>
+        <div class="reviews-score" style="font-family:'Cormorant Garamond',serif;font-size:96px;line-height:.9;color:#C89B5A;">3.7<span style="font-size:34px;color:#F8F2EA;">/5</span></div>
+        <!-- star bar is clipped to the true 3.7/5 ratio rather than showing five full stars -->
+        <div role="img" aria-label="Rated 3.7 out of 5" style="display:inline-block;font-size:20px;letter-spacing:3px;margin:14px 0 10px;background:linear-gradient(90deg,#C89B5A 0%,#C89B5A 72%,rgba(248,242,234,.22) 72%,rgba(248,242,234,.22) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;">★★★★★</div>
+        <p style="color:rgba(248,242,234,.5);font-size:14px;margin-bottom:34px;">Based on 1,085 Google reviews</p>
         <div style="display:flex;gap:30px;">
-          <div><div style="font-family:'Cormorant Garamond',serif;font-size:28px;color:#F8F2EA;">4.2★</div><div style="font-size:10px;letter-spacing:2px;color:rgba(248,242,234,.5);margin-top:5px;">SWIGGY</div></div>
+          <div><div style="font-family:'Cormorant Garamond',serif;font-size:28px;color:#F8F2EA;">₹1–200</div><div style="font-size:10px;letter-spacing:2px;color:rgba(248,242,234,.5);margin-top:5px;">PER PERSON</div></div>
           <div style="width:1px;background:rgba(248,242,234,.14);"></div>
-          <div><div style="font-family:'Cormorant Garamond',serif;font-size:28px;color:#F8F2EA;">4.1★</div><div style="font-size:10px;letter-spacing:2px;color:rgba(248,242,234,.5);margin-top:5px;">ZOMATO</div></div>
+          <div><div style="font-family:'Cormorant Garamond',serif;font-size:28px;color:#F8F2EA;">11 PM</div><div style="font-size:10px;letter-spacing:2px;color:rgba(248,242,234,.5);margin-top:5px;">CLOSES DAILY</div></div>
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:18px;">
         <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="3">
           <div class="reveal review-card" style="background:#191919;border:1px solid rgba(248,242,234,.06);border-radius:8px;padding:30px 32px;transition:all .4s;" style-hover="{ borderColor: 'rgba(200,155,90,.35)', transform: 'translateX(8px)' }">
-            <div style="color:#C89B5A;font-size:14px;letter-spacing:2px;margin-bottom:14px;">★★★★★</div>
-            <p style="font-family:'Cormorant Garamond',serif;font-size:21px;font-style:italic;line-height:1.5;color:rgba(248,242,234,.9);margin-bottom:18px;">"{{ r.quote }}"</p>
-            <div style="font-size:11px;letter-spacing:2px;color:rgba(248,242,234,.5);">{{ r.name }} · GOOGLE REVIEW</div>
+            <div style="color:#C89B5A;font-size:11px;letter-spacing:2.5px;font-weight:600;margin-bottom:14px;">{{ r.theme }}</div>
+            <p style="font-family:'Cormorant Garamond',serif;font-size:21px;font-style:italic;line-height:1.5;color:rgba(248,242,234,.9);margin-bottom:18px;">{{ r.body }}</p>
+            <div style="font-size:11px;letter-spacing:2px;color:rgba(248,242,234,.5);">GOOGLE REVIEW HIGHLIGHT</div>
           </div>
         </sc-for>
       </div>
@@ -498,11 +545,11 @@
   <section id="visit" class="sec visit" style="position:relative;z-index:1;background:#0d0d0d;border-top:1px solid rgba(248,242,234,.06);padding:110px 40px;">
     <div class="visit-grid" style="max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:stretch;">
       <div class="visit-media" style="position:relative;border-radius:8px;overflow:hidden;min-height:420px;">
-        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1200&auto=format&fit=crop" alt="cafe seating" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
+        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1200&auto=format&fit=crop" alt="Seating area at Aralikatte Cafe" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
         <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(9,9,9,.2),rgba(9,9,9,.7));"></div>
         <div class="visit-card" style="position:absolute;bottom:30px;left:30px;right:30px;background:rgba(25,25,25,.7);backdrop-filter:blur(14px);border:1px solid rgba(200,155,90,.25);border-radius:8px;padding:26px 28px;">
           <div style="font-size:10px;letter-spacing:2px;color:#C89B5A;margin-bottom:8px;">FIND US</div>
-          <div class="v-addr" style="font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1.3;">36th Cross Road, 5th Block,<br>Jayanagar, Bengaluru 560041</div>
+          <div class="v-addr" style="font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1.3;">75, 80 Feet Rd, Banashankari 6th Stage<br>1st Block, Subramanyapura, Bengaluru 560061</div>
         </div>
       </div>
       <div class="visit-copy">
@@ -517,7 +564,7 @@
           </sc-for>
         </div>
         <div class="visit-btns" style="display:flex;gap:14px;flex-wrap:wrap;">
-          <a href="tel:+918762473937" style="background:#C89B5A;color:#090909;padding:16px 30px;font-size:11px;letter-spacing:2px;font-weight:600;text-decoration:none;border-radius:2px;transition:all .35s;" style-hover="{ transform:'translateY(-3px)' }">RESERVE A TABLE</a>
+          <a href="tel:+917899542233" style="background:#C89B5A;color:#090909;padding:16px 30px;font-size:11px;letter-spacing:2px;font-weight:600;text-decoration:none;border-radius:2px;transition:all .35s;" style-hover="{ transform:'translateY(-3px)' }">CALL US</a>
           <a href="{{ mapsUrl }}" target="_blank" rel="noopener" style="border:1px solid rgba(248,242,234,.25);color:#F8F2EA;padding:16px 30px;font-size:11px;letter-spacing:2px;font-weight:500;text-decoration:none;border-radius:2px;transition:all .35s;" style-hover="{ borderColor:'#C89B5A',color:'#C89B5A' }">GET DIRECTIONS</a>
         </div>
       </div>
@@ -528,17 +575,17 @@
   <section class="sec insta" style="position:relative;z-index:1;padding:100px 40px;text-align:center;">
     <div style="max-width:1340px;margin:0 auto;">
       <div class="reveal sec-head" style="margin-bottom:48px;">
-        <div class="sec-eyebrow" style="font-size:11px;letter-spacing:4px;color:#C89B5A;margin-bottom:18px;">@ALCHEMY_COFFEE_ROASTERS</div>
-        <h2 class="sec-h2" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,3.6vw,52px);">Follow the <span style="font-style:italic;color:#C89B5A;">feed.</span></h2>
+        <div class="sec-eyebrow" style="font-size:11px;letter-spacing:4px;color:#C89B5A;margin-bottom:18px;">FROM THE CAFE</div>
+        <h2 class="sec-h2" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,3.6vw,52px);">A look <span style="font-style:italic;color:#C89B5A;">inside.</span></h2>
       </div>
       <div class="insta-grid" style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:46px;">
         <sc-for list="{{ insta }}" as="p" hint-placeholder-count="6">
-          <div style="aspect-ratio:1;border-radius:5px;overflow:hidden;position:relative;cursor:pointer;">
-            <img src="{{ p }}" alt="instagram" style="width:100%;height:100%;object-fit:cover;transition:all .5s;" style-hover="{ transform:'scale(1.1)' }">
+          <div style="aspect-ratio:1;border-radius:5px;overflow:hidden;position:relative;">
+            <img src="{{ p.src }}" alt="{{ p.alt }}" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:all .5s;" style-hover="{ transform:'scale(1.1)' }">
           </div>
         </sc-for>
       </div>
-      <a href="#top" style="display:inline-block;border:1px solid #C89B5A;color:#C89B5A;padding:16px 36px;font-size:11px;letter-spacing:2.5px;font-weight:600;text-decoration:none;border-radius:2px;transition:all .35s;" style-hover="{ background:'#C89B5A',color:'#090909' }">FOLLOW @ALCHEMY_COFFEE_ROASTERS</a>
+      <a href="#visit" style="display:inline-block;border:1px solid #C89B5A;color:#C89B5A;padding:16px 36px;font-size:11px;letter-spacing:2.5px;font-weight:600;text-decoration:none;border-radius:2px;transition:all .35s;" style-hover="{ background:'#C89B5A',color:'#090909' }">PLAN YOUR VISIT</a>
     </div>
   </section>
 
@@ -548,9 +595,9 @@
       <div>
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
           <div style="width:30px;height:30px;border:1px solid #C89B5A;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#C89B5A;font-family:'Cormorant Garamond',serif;font-style:italic;">A</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:19px;letter-spacing:4px;">ALCHEMY</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:19px;letter-spacing:4px;">ARALIKATTE</div>
         </div>
-        <p style="color:rgba(248,242,234,.5);font-size:13.5px;line-height:1.8;font-weight:300;max-width:260px;">Specialty coffee, handcrafted with passion. Food made with love. Moments made for memories.</p>
+        <p style="color:rgba(248,242,234,.5);font-size:13.5px;line-height:1.8;font-weight:300;max-width:260px;">Vegetarian South Indian favourites, a relaxed setting, and good food made for everyday moments.</p>
       </div>
       <div>
         <div style="font-size:10px;letter-spacing:2px;color:#C89B5A;margin-bottom:18px;">EXPLORE</div>
@@ -560,11 +607,11 @@
       </div>
       <div>
         <div style="font-size:10px;letter-spacing:2px;color:#C89B5A;margin-bottom:18px;">HOURS</div>
-        <div style="color:rgba(248,242,234,.6);font-size:13.5px;line-height:1.9;">Open Daily<br>8:00 AM – 11:00 PM<br><br>+91 87624 73937</div>
+        <div style="color:rgba(248,242,234,.6);font-size:13.5px;line-height:1.9;">Open Daily<br>Closes 11 PM<br><br><a href="tel:+917899542233" style="color:inherit;text-decoration:none;" style-hover="{ color:'#C89B5A' }">+91 78995 42233</a></div>
       </div>
       <div class="footer-news">
         <div style="font-size:10px;letter-spacing:2px;color:#C89B5A;margin-bottom:18px;">NEWSLETTER</div>
-        <p style="color:rgba(248,242,234,.5);font-size:13px;line-height:1.7;margin-bottom:16px;">Slow coffee notes, in your inbox.</p>
+        <p style="color:rgba(248,242,234,.5);font-size:13px;line-height:1.7;margin-bottom:16px;">Cafe news and updates, in your inbox.</p>
         <div style="display:flex;border:1px solid rgba(248,242,234,.18);border-radius:3px;overflow:hidden;">
           <input type="email" inputmode="email" autocomplete="email" placeholder="Email address" style="flex:1;min-width:0;background:transparent;border:none;padding:13px 16px;color:#F8F2EA;font-size:12.5px;outline:none;font-family:'Inter',sans-serif;">
           <button aria-label="Subscribe" style="background:#C89B5A;color:#090909;border:none;padding:0 20px;font-size:11px;letter-spacing:1px;font-weight:600;cursor:pointer;">→</button>
@@ -572,18 +619,19 @@
       </div>
     </div>
     <div class="footer-bottom" style="max-width:1300px;margin:0 auto;border-top:1px solid rgba(248,242,234,.08);padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
-      <div style="font-size:12px;color:rgba(248,242,234,.4);">© 2026 Alchemy Coffee Roasters · Jayanagar, Bengaluru</div>
+      <div style="font-size:12px;color:rgba(248,242,234,.4);">© 2026 Aralikatte Cafe · Bengaluru</div>
+      <!-- no verified social / delivery profiles yet — these stay as in-page actions rather than dead external links -->
       <div style="display:flex;gap:24px;font-size:11px;letter-spacing:1.5px;color:rgba(248,242,234,.5);">
-        <a href="#top" style="color:rgba(248,242,234,.5);text-decoration:none;" style-hover="{ color:'#C89B5A' }">INSTAGRAM</a>
-        <a href="#top" style="color:rgba(248,242,234,.5);text-decoration:none;" style-hover="{ color:'#C89B5A' }">SWIGGY</a>
-        <a href="#top" style="color:rgba(248,242,234,.5);text-decoration:none;" style-hover="{ color:'#C89B5A' }">ZOMATO</a>
+        <a href="#menu" style="color:rgba(248,242,234,.5);text-decoration:none;" style-hover="{ color:'#C89B5A' }">MENU</a>
+        <a href="#visit" style="color:rgba(248,242,234,.5);text-decoration:none;" style-hover="{ color:'#C89B5A' }">VISIT</a>
+        <a href="tel:+917899542233" style="color:rgba(248,242,234,.5);text-decoration:none;" style-hover="{ color:'#C89B5A' }">CALL US</a>
       </div>
     </div>
   </footer>
 
   <!-- ============ MOBILE STICKY ACTIONS ============ -->
   <div class="m-actionbar" style="{{ actionBarStyle }}">
-    <a href="tel:+918762473937" style="border:1px solid rgba(200,155,90,.55);color:#C89B5A;">CALL</a>
+    <a href="tel:+917899542233" style="border:1px solid rgba(200,155,90,.55);color:#C89B5A;">CALL</a>
     <a href="#menu" style="border:1px solid rgba(248,242,234,.18);color:#F8F2EA;">MENU</a>
     <a href="{{ mapsUrl }}" target="_blank" rel="noopener" style="background:#C89B5A;color:#090909;">DIRECTIONS</a>
   </div>
@@ -642,30 +690,31 @@ class Component extends DCLogic {
 
   data() {
     const u = (id, w) => `https://images.unsplash.com/photo-${id}?q=80&w=${w||800}&auto=format&fit=crop`;
+    // ------------------------------------------------------------------
+    // MENU DATA — PENDING CLIENT INPUT
+    // Only dishes evidenced by the Google Business profile are listed here.
+    // `tag` intentionally holds the veg marker instead of a price: no verified
+    // per-item pricing exists yet (the profile only states ₹1–200 per person).
+    // When the client supplies the real menu, extend this list and swap `tag`
+    // for the confirmed price — the cards, tabs and search need no other change.
+    // ------------------------------------------------------------------
     const items = [
-      { name:'Salted Caramel Latte', price:'₹195', cat:'Coffee', featured:true, desc:'Espresso, steamed milk, house salted caramel.', img:u('1461023058943-07fcbe16d735',800) },
-      { name:'Cafe Mocha', price:'₹195', cat:'Coffee', featured:false, desc:'Rich chocolate, double espresso, velvet foam.', img:u('1578314675249-a6910f80cc4e',800) },
-      { name:'Chemex Pour Over', price:'₹220', cat:'Coffee', featured:true, desc:'Single-origin, clean, bright, slow-brewed.', img:u('1495474472287-4d71bcdd2085',800) },
-      { name:'Filter Coffee Frappe', price:'₹150', cat:'Coffee', featured:false, desc:'South Indian filter, blended cold & frothy.', img:u('1517701550927-30cf4ba1dba5',800) },
-      { name:'Hot Chocolate', price:'₹240', cat:'Coffee', featured:false, desc:'Stone-ground cocoa, steamed to silk.', img:u('1542990253-0d0f5be5f0ed',800) },
-      { name:'Butter Croissant', price:'₹140', cat:'Bakery', featured:false, desc:'72-hour laminated, golden & flaky.', img:u('1555507036-ab1f4038808a',800) },
-      { name:'Nutella Croffle', price:'₹350', cat:'Bakery', featured:true, desc:'Croissant-waffle, Nutella, toasted hazelnut.', img:u('1612203985729-70726954388c',800) },
-      { name:"Chicken Croissan'wich", price:'₹360', cat:'Mains', featured:false, desc:'Grilled chicken, herbed mayo, flaky croissant.', img:u('1550547660-d9450f859349',800) },
-      { name:'Oriental Meal in a Bowl', price:'₹380', cat:'Mains', featured:true, desc:'Stir-fried greens, rice, oriental sauce.', img:u('1512058564366-18510be2db19',800) },
-      { name:'Grilled Chicken Sizzler', price:'₹480', cat:'Mains', featured:false, desc:'Smoky grilled chicken, veg, house sauce.', img:u('1544025162-d76694265947',800) },
-      { name:'Chettinad Chicken', price:'₹400', cat:'Mains', featured:false, desc:'Spiced South Indian classic, slow-cooked.', img:u('1631452180519-c014fe946bc7',800) },
-      { name:'Roasted Hazelnut Latte', price:'₹210', cat:'Coffee', featured:false, desc:'Toasted hazelnut, espresso, micro-foam.', img:u('1568649929103-28ffbefaca1e',800) },
-      { name:'Dark Chocolate Croffle', price:'₹360', cat:'Desserts', featured:false, desc:'Croffle, dark ganache, sea salt.', img:u('1606313564200-e75d5e30476c',800) },
-      { name:'Berry Smoothie', price:'₹220', cat:'Desserts', featured:false, desc:'Mixed berries, yoghurt, honey.', img:u('1553530666-ba11a7da3888',800) },
-      { name:'Avocado Toast', price:'₹290', cat:'Bakery', featured:false, desc:'Sourdough, smashed avocado, chilli, lime.', img:u('1482049016688-2d3e1b311543',800) },
-      { name:'Prawn Starter', price:'₹420', cat:'Mains', featured:false, desc:'Pan-seared prawns, garlic butter, herbs.', img:u('1565299624946-b28f40a0ae38',800) },
+      { name:'Dosa', tag:'VEG', cat:'Dosas', featured:true, desc:'The South Indian staple, served fresh through the day.', img:u('1743517894265-c86ab035adef',800) },
+      { name:'Crispy Dosa', tag:'VEG', cat:'Dosas', featured:true, desc:'Thin, golden and crisp, with chutney on the side.', img:u('1668236543090-82eba5ee5976',800) },
+      { name:'Idli', tag:'VEG', cat:'South Indian', featured:true, desc:'Soft steamed idli — a light, everyday favourite.', img:u('1741376509166-cbd74b608f5a',800) },
+      // Not a dish — an honest filler card so the 4-up grid reads as complete
+      // while the verified item list is still short. Remove it once the real
+      // menu lands.
+      { name:'The Full Menu', tag:'', cat:'South Indian', featured:true, desc:'More South Indian favourites are served through the day — ask at the counter.', img:u('1742281257687-092746ad6021',800) },
     ];
     return { items };
   }
 
   renderVals() {
     const { items } = this.data();
-    const cats = ['Popular','Coffee','Bakery','Mains','Desserts'];
+    const u = (id, w) => `https://images.unsplash.com/photo-${id}?q=80&w=${w||800}&auto=format&fit=crop`;
+    // only categories that actually hold items — an empty tab would dead-end the filter
+    const cats = ['Popular','Dosas','South Indian'];
     const active = this.state.activeCat;
     const q = this.state.query.trim().toLowerCase();
 
@@ -694,7 +743,7 @@ class Component extends DCLogic {
       cardImgH: overlay ? '320px' : '200px',
       navStyle: `position:fixed;top:0;left:0;right:0;height:78px;z-index:50;transition:all .4s;background:${this.state.scrolled?'rgba(9,9,9,.82)':'transparent'};backdrop-filter:${this.state.scrolled?'blur(16px)':'none'};border-bottom:1px solid ${this.state.scrolled?'rgba(200,155,90,.16)':'transparent'};`,
       navLinks: links,
-      mapsUrl: 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent('Alchemy Coffee Roasters, 36th Cross Rd, 5th Block, Jayanagar, Bengaluru 560041'),
+      mapsUrl: 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent('Aralikatte Cafe, 75, 80 Feet Rd, Banashankari 6th Stage 1st Block, Jayanagar Housing Society Layout, Subramanyapura, Bengaluru, Karnataka 560061'),
 
       // ---- mobile navigation ----
       onToggleMenu: () => this.setMenu(!open),
@@ -713,7 +762,6 @@ class Component extends DCLogic {
       drawerFootStyle: `opacity:${open ? 1 : 0};transform:translateY(${open ? 0 : 12}px);transition:opacity .5s ${stagger(links.length)},transform .6s cubic-bezier(.16,.84,.44,1) ${stagger(links.length)};`,
       actionBarStyle: `transform:translateY(${this.state.scrolled && !open ? '0' : '120%'});transition:transform .5s cubic-bezier(.16,.84,.44,1);`,
 
-      onReserve: (e) => {},
       onHeroMove: this.onHeroMove,
       heroPx: this.state.heroPx, heroPy: this.state.heroPy,
       cupPx: this.state.cupPx, cupPy: this.state.cupPy,
@@ -722,12 +770,12 @@ class Component extends DCLogic {
         { left: 95, dur: 5.5, delay: 1.2 },
         { left: 120, dur: 5, delay: 2.4 },
       ],
-      aboutTags: ['Community','Slow Coffee','House Roasting','Fresh Ingredients','Hospitality'],
+      aboutTags: ['Vegetarian','South Indian','Dosas','Idlis','Relaxed Dining'],
       craftSteps: [
-        { no:'01', title:'Sourcing', body:'Single-origin beans chosen from estates that share our standards.' },
-        { no:'02', title:'Roasting', body:'Roasted slowly in-house to coax out each origin\u2019s character.' },
-        { no:'03', title:'Brewing', body:'Chemex, Aeropress, espresso \u2014 dialed in, cup by cup.' },
-        { no:'04', title:'Serving', body:'Handcrafted drinks and fresh food, plated with care.' },
+        { no:'01', title:'Fresh Favorites', body:'South Indian classics prepared for everyday cravings.' },
+        { no:'02', title:'Vegetarian', body:'A menu centered around vegetarian dining.' },
+        { no:'03', title:'Comfort', body:'A clean, relaxed setting to enjoy your meal at your own pace.' },
+        { no:'04', title:'Hospitality', body:'Friendly service and a welcoming cafe experience.' },
       ],
       categories: cats.map(c => ({ label: c, style: tabStyle(c === active && !q), onClick: () => this.setState({ activeCat: c, query: '' }) })),
       query: this.state.query,
@@ -736,33 +784,36 @@ class Component extends DCLogic {
       noResults: visible.length === 0,
       cardOuter: "background:#191919;border:1px solid rgba(248,242,234,.06);border-radius:8px;overflow:hidden;transition:all .45s cubic-bezier(.16,.84,.44,1);cursor:pointer;",
       gallery: [
-        {src:'https://images.unsplash.com/photo-1453614512568-c4024d13c247?q=80&w=700&auto=format&fit=crop'},
-        {src:'https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=700&auto=format&fit=crop'},
-        {src:'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=700&auto=format&fit=crop'},
-        {src:'https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=700&auto=format&fit=crop'},
-        {src:'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=700&auto=format&fit=crop'},
-        {src:'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=700&auto=format&fit=crop'},
-        {src:'https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=700&auto=format&fit=crop'},
-        {src:'https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=700&auto=format&fit=crop'},
-        {src:'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=700&auto=format&fit=crop'},
+        { src:u('1751560455942-f859f1215826',700), alt:'Dosa served with chutneys' },
+        { src:u('1741376509253-221ac18fac0f',700), alt:'Idli with sambar and chutney' },
+        { src:u('1517248135467-4c7edcad34c4',700), alt:'Cafe seating and interior' },
+        { src:u('1742281257687-092746ad6021',700), alt:'A vegetarian South Indian meal served on a platter' },
+        { src:u('1757918391899-1341f7b285fb',700), alt:'Filter coffee in a steel tumbler' },
+        { src:u('1743615467363-250466982515',700), alt:'Crisp dosa served with dips' },
+        { src:u('1521017432531-fbd92d768814',700), alt:'Tables and seating inside the cafe' },
+        { src:u('1632104667384-06f58cb7ad44',700), alt:'Steamed idli with a bowl of sambar' },
+        { src:u('1689079564957-83e3641c7fd8',700), alt:'Tables set for a meal inside the cafe' },
       ],
+      // Anonymous themes drawn from the Google review summary — deliberately
+      // NOT verbatim quotes, and NOT attributed to named customers.
       reviews: [
-        { quote:'Ambience 5/5. Food and drinks 5/5. A lovely place to slow down.', name:'PRIYA R.' },
-        { quote:'Tasty bites and a great variety of brews. The pour overs are special.', name:'KARTHIK M.' },
-        { quote:'Roasted vegetable lasagna and the oriental meal were amazing.', name:'ANANYA S.' },
+        { theme:'SOUTH INDIAN FAVOURITES', body:'Customers highlight crispy dosas and flavourful idlis.' },
+        { theme:'COMFORTABLE ATMOSPHERE', body:'Reviews mention a clean, relaxed and comfortable setting.' },
+        { theme:'FRIENDLY SERVICE', body:'Several reviews mention courteous and friendly staff.' },
       ],
       visitInfo: [
-        { label:'ADDRESS', value:'36th Cross Rd, 5th Block, Jayanagar 560041' },
-        { label:'PHONE', value:'+91 87624 73937' },
-        { label:'HOURS', value:'Open Daily · 8 AM – 11 PM' },
+        { label:'ADDRESS', value:'75, 80 Feet Rd, Banashankari 6th Stage 1st Block, Subramanyapura, Bengaluru 560061' },
+        { label:'PHONE', value:'+91 78995 42233' },
+        { label:'HOURS', value:'Open Daily · Closes 11 PM' },
+        { label:'GOOD TO KNOW', value:'Outdoor Seating · Vegetarian · Walk-ins Welcome' },
       ],
       insta: [
-        'https://images.unsplash.com/photo-1572442388796-11668a67e53d?q=80&w=500&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?q=80&w=500&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=500&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1612203985729-70726954388c?q=80&w=500&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1453614512568-c4024d13c247?q=80&w=500&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?q=80&w=500&auto=format&fit=crop',
+        { src:u('1743615467204-8fdaa85ff2db',500), alt:'Freshly made dosa' },
+        { src:u('1742281257707-0c7f7e5ca9c6',500), alt:'Vegetarian meal served on a steel platter' },
+        { src:u('1589301760014-d929f3979dbc',500), alt:'Idlis served on a banana leaf' },
+        { src:u('1711153419402-336ee48f2138',500), alt:'A vegetarian meal tray' },
+        { src:u('1680359873197-c3eb21ec05c0',500), alt:'Idli plated with chutneys' },
+        { src:u('1758387941825-a6ecaec9c14d',500), alt:'Filter coffee served in a brass tumbler' },
       ],
     };
   }
