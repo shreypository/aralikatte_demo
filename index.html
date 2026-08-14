@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { background: #090909; }
+  img { max-width: 100%; }
+  a, button, input { -webkit-tap-highlight-color: rgba(200,155,90,.18); }
+  [id] { scroll-margin-top: 96px; }
+  ::selection { background: #C89B5A; color: #090909; }
+  ::-webkit-scrollbar { width: 9px; }
+  ::-webkit-scrollbar-track { background: #090909; }
+  ::-webkit-scrollbar-thumb { background: #2a2118; border-radius: 9px; }
+  ::-webkit-scrollbar-thumb:hover { background: #C89B5A; }
+  @keyframes steamRise {
+    0% { opacity: 0; transform: translateY(0) scaleX(1); }
+    18% { opacity: .55; }
+    50% { opacity: .35; }
+    100% { opacity: 0; transform: translateY(-120px) scaleX(2.4); }
+  }
+  @keyframes floatBean {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-22px) rotate(180deg); }
+  }
+  @keyframes glowPulse {
+    0%,100% { opacity: .4; }
+    50% { opacity: .85; }
+  }
+  @keyframes revealUp {
+    from { opacity: 0; transform: translateY(38px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { opacity: 0; }
+  .reveal.in { animation: revealUp .9s cubic-bezier(.16,.84,.44,1) forwards; }
+
+  /* ============================================================
+     MOBILE CHROME — hidden on desktop, revealed at <=900px
+     ============================================================ */
+  .m-burger { display: none; }
+  .m-drawer {
+    display: none;
+    position: fixed; inset: 0; z-index: 60;
+  }
+  .m-drawer-panel {
+    position: absolute; left: 0; right: 0; top: 0;
+    background: #0e0d0c;
+    border-bottom: 1px solid rgba(200,155,90,.22);
+    box-shadow: 0 44px 90px -30px rgba(0,0,0,.95);
+    padding: 84px 22px 28px;
+    max-height: 100vh; overflow-y: auto;
+  }
+  .m-actionbar {
+    display: none;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 55;
+    gap: 10px;
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
+    background: rgba(10,10,10,.88);
+    backdrop-filter: blur(18px);
+    border-top: 1px solid rgba(200,155,90,.18);
+  }
+  .m-actionbar a {
+    flex: 1 1 0; text-align: center; text-decoration: none;
+    padding: 14px 8px; border-radius: 3px;
+    font-size: 11px; letter-spacing: 1.6px; font-weight: 600;
+  }
+
+  /* sticky-hover cleanup on touch devices */
+  @media (hover: none) {
+    [class*="scp"]:hover { transform: none !important; }
+  }
+
+  /* ============================================================
+     <= 1080px — loosen the wide grids
+     ============================================================ */
+  @media (max-width: 1080px) {
+    .menu-grid   { grid-template-columns: repeat(3,1fr) !important; }
+    .craft-grid  { grid-template-columns: repeat(2,1fr) !important; }
+    .insta-grid  { grid-template-columns: repeat(4,1fr) !important; }
+    .footer-grid { grid-template-columns: 1.4fr 1fr 1fr !important; }
+    .footer-news { grid-column: 1 / -1 !important; }
+    .hero-rail   { position: static !important; transform: none !important; margin-top: 18px !important; }
+  }
+
+  /* ============================================================
+     <= 900px — mobile navigation + single-column sections
+     ============================================================ */
+  @media (max-width: 900px) {
+    [id] { scroll-margin-top: 76px; }
+    .nav { height: 64px !important; z-index: 70 !important; }
+    .nav-inner { padding: 0 18px !important; }
+    .nav-links, .nav-cta { display: none !important; }
+    .m-burger { display: block; }
+    .m-drawer { display: block; }
+    .m-actionbar { display: flex; }
+
+    .hero { grid-template-columns: 1fr !important; min-height: 0 !important; padding: 104px 26px 60px !important; gap: 42px !important; }
+    .hero-sub { max-width: 580px !important; }
+    .about { grid-template-columns: 1fr !important; gap: 66px !important; }
+    .reviews-grid { grid-template-columns: 1fr !important; gap: 46px !important; }
+    .visit-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 36px !important; }
+    .footer { padding-bottom: 104px !important; }
+  }
+
+  /* ============================================================
+     <= 760px — the phone layout
+     ============================================================ */
+  @media (max-width: 760px) {
+    .sec { padding: 74px 18px !important; }
+    .sec-eyebrow { font-size: 10px !important; letter-spacing: 3px !important; margin-bottom: 14px !important; }
+    .sec-h2 { font-size: clamp(31px, 8.4vw, 42px) !important; line-height: 1.05 !important; }
+    .sec-head { margin-bottom: 38px !important; }
+
+    /* ---- hero ---- */
+    .hero { padding: 94px 18px 48px !important; gap: 34px !important; }
+    .nav-logo-sub { font-size: 7px !important; letter-spacing: 2.4px !important; white-space: nowrap !important; }
+    .hero-eyebrow { font-size: 9.5px !important; letter-spacing: 2px !important; line-height: 1.7 !important; margin-bottom: 16px !important; text-wrap: balance; }
+    .hero-h1 { font-size: clamp(38px, 10.4vw, 54px) !important; line-height: 1.02 !important; }
+    .hero-sub { font-size: 14.5px !important; line-height: 1.7 !important; margin: 20px 0 28px !important; }
+    .hero-btns { gap: 10px !important; margin-bottom: 34px !important; flex-wrap: nowrap !important; }
+    .hero-btns a { flex: 1 1 0 !important; text-align: center !important; padding: 16px 8px !important; font-size: 10.5px !important; letter-spacing: 1.4px !important; }
+    .hero-stats { gap: 20px !important; }
+    .hero-img { height: 330px !important; }
+    .hero-cup { width: 108px !important; height: 108px !important; left: -6px !important; bottom: -14px !important; border-width: 4px !important; }
+    .hero-steam { display: none !important; }
+    .hero-rail {
+      display: grid !important; grid-template-columns: repeat(3,1fr) !important;
+      gap: 0 !important; padding: 15px 6px !important; min-width: 0 !important;
+      text-align: center !important; margin-top: 15px !important;
+    }
+    .rail-div { display: none !important; }
+    .rail-item + .rail-item { border-left: 1px solid rgba(248,242,234,.12) !important; }
+    .rail-lab { font-size: 8px !important; letter-spacing: 1.2px !important; margin-bottom: 5px !important; }
+    .rail-val { font-size: 12.5px !important; }
+
+    /* ---- about ---- */
+    .about-img  { height: 290px !important; }
+    .about-img2 { width: 116px !important; height: 144px !important; right: -6px !important; bottom: -22px !important; border-width: 5px !important; }
+    .about-badge { top: -14px !important; left: -8px !important; padding: 12px 14px !important; }
+    .about-badge .b-1 { font-size: 22px !important; }
+    .about-badge .b-2 { font-size: 8px !important; letter-spacing: 1.5px !important; }
+    .about-copy p { font-size: 14.5px !important; line-height: 1.8 !important; margin-bottom: 18px !important; }
+    .about-tags span { font-size: 10.5px !important; padding: 9px 15px !important; }
+
+    /* ---- craft: swipeable carousel ---- */
+    .craft-grid {
+      display: flex !important; grid-template-columns: none !important;
+      gap: 14px !important; overflow-x: auto !important;
+      scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+      margin: 0 -18px !important; padding: 2px 18px 16px !important;
+      scrollbar-width: none;
+    }
+    .craft-grid::-webkit-scrollbar { display: none; }
+    .craft-card {
+      flex: 0 0 74% !important; scroll-snap-align: center;
+      padding: 26px 22px !important;
+      opacity: 1 !important; animation: none !important;
+    }
+    .craft-card h3 { font-size: 23px !important; }
+
+    /* ---- menu ---- */
+    .menu-head { flex-direction: column !important; align-items: stretch !important; gap: 20px !important; margin-bottom: 22px !important; }
+    .menu-searchwrap { width: 100% !important; }
+    .menu-search { width: 100% !important; font-size: 16px !important; padding: 15px 20px 15px 46px !important; }
+    .menu-tabs {
+      flex-wrap: nowrap !important; overflow-x: auto !important; gap: 9px !important;
+      margin: 0 -18px 24px !important; padding: 2px 18px 12px !important;
+      scroll-snap-type: x proximity; scrollbar-width: none;
+    }
+    .menu-tabs::-webkit-scrollbar { display: none; }
+    .menu-tabs button { flex: 0 0 auto !important; scroll-snap-align: start; padding: 11px 19px !important; font-size: 11.5px !important; white-space: nowrap; }
+    .menu-grid { grid-template-columns: 1fr !important; gap: 14px !important; }
+    .menu-imgwrap { height: 190px !important; }
+
+    /* ---- gallery: even 2-up mosaic instead of ragged masonry ---- */
+    .gallery-grid {
+      columns: auto !important;
+      display: grid !important; grid-template-columns: repeat(2,1fr) !important; gap: 10px !important;
+    }
+    .gallery-item { margin-bottom: 0 !important; aspect-ratio: 1 / 1; }
+    .gallery-item img { height: 100% !important; object-fit: cover !important; }
+    .gallery-item:last-child { grid-column: 1 / -1; aspect-ratio: 16 / 10; }
+
+    /* ---- reviews ---- */
+    .reviews-grid { gap: 38px !important; }
+    .reviews-score { font-size: 66px !important; }
+    .review-card { padding: 24px 20px !important; }
+    .review-card p { font-size: 17.5px !important; }
+
+    /* ---- visit ---- */
+    .visit-media { min-height: 290px !important; }
+    .visit-card { left: 14px !important; right: 14px !important; bottom: 14px !important; padding: 18px !important; }
+    .visit-card .v-addr { font-size: 17px !important; }
+    .visit-info .vi-val { font-size: 18px !important; }
+    .visit-btns { gap: 10px !important; flex-wrap: nowrap !important; }
+    .visit-btns a { flex: 1 1 0 !important; text-align: center !important; padding: 15px 8px !important; font-size: 10.5px !important; letter-spacing: 1.4px !important; }
+
+    /* ---- instagram ---- */
+    .insta-grid { grid-template-columns: repeat(3,1fr) !important; gap: 8px !important; margin-bottom: 34px !important; }
+
+    /* ---- footer ---- */
+    .footer { padding: 62px 18px 104px !important; }
+    .footer-grid { grid-template-columns: 1fr !important; gap: 34px !important; margin-bottom: 36px !important; }
+    .footer-news input { font-size: 16px !important; }
+    .footer-bottom { flex-direction: column !important; align-items: flex-start !important; gap: 14px !important; }
+  }
+
+  /* ============================================================
+     <= 380px — small phones
+     ============================================================ */
+  @media (max-width: 380px) {
+    .hero-btns a, .visit-btns a { font-size: 9.5px !important; letter-spacing: 1px !important; padding: 15px 6px !important; }
+    .rail-val { font-size: 11.5px !important; }
+    .insta-grid { gap: 6px !important; }
+    .m-drawer-links a { font-size: 24px !important; padding: 12px 2px !important; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal, .reveal.in { opacity: 1 !important; animation: none !important; }
+    * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .12s !important; }
+  }
+</style>
+</helmet>
+<div class="page" style="background:#090909;color:#F8F2EA;font-family:'Inter',sans-serif;overflow-x:hidden;position:relative;min-height:100vh;">
+
+  <!-- ambient grain / glow layer -->
+  <div style="position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(60% 50% at 75% 18%, rgba(200,155,90,.10), transparent 70%),radial-gradient(50% 40% at 12% 60%, rgba(94,58,35,.10), transparent 70%);"></div>
+
+  <!-- ============ NAV ============ -->
+  <nav class="nav" style="{{ navStyle }}">
+    <div class="nav-inner" style="max-width:1400px;margin:0 auto;padding:0 40px;height:100%;display:flex;align-items:center;justify-content:space-between;">
+      <a href="#top" class="nav-logo" style="display:flex;align-items:center;gap:14px;text-decoration:none;color:#F8F2EA;">
+        <div style="width:34px;height:34px;flex:0 0 34px;border:1px solid #C89B5A;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#C89B5A;font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;">A</div>
+        <div style="line-height:1;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:21px;letter-spacing:5px;font-weight:600;">ALCHEMY</div>
+          <div class="nav-logo-sub" style="font-size:8px;letter-spacing:4px;color:#C89B5A;margin-top:3px;">COFFEE ROASTERS · JAYANAGAR</div>
+        </div>
+      </a>
+      <div class="nav-links" style="display:flex;gap:38px;align-items:center;">
+        <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="6">
+          <a href="{{ link.href }}" style="text-decoration:none;font-size:12.5px;letter-spacing:2.5px;font-weight:400;color:rgba(248,242,234,.72);transition:color .3s;" style-hover="{ color: '#C89B5A' }">{{ link.label }}</a>
+        </sc-for>
+      </div>
+      <a href="#visit" class="nav-cta" onClick="{{ onReserve }}" style="border:1px solid #C89B5A;color:#C89B5A;padding:13px 26px;font-size:11px;letter-spacing:2.5px;font-weight:600;text-decoration:none;border-radius:2px;transition:all .35s;background:transparent;" style-hover="{ background: '#C89B5A', color: '#090909' }">RESERVE A TABLE</a>
+
+      <!-- mobile menu button -->
+      <button class="m-burger" onClick="{{ onToggleMenu }}" aria-label="Open menu" style="{{ burgerStyle }}">
+        <span style="{{ burgerL1 }}"></span>
+        <span style="{{ burgerL2 }}"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============ MOBILE DRAWER ============ -->
+  <div class="m-drawer" onClick="{{ onCloseMenu }}" style="{{ drawerStyle }}">
+    <div class="m-drawer-panel" style="{{ drawerPanelStyle }}">
+      <div class="m-drawer-links">
+        <sc-for list="{{ mobileLinks }}" as="ml" hint-placeholder-count="6">
+          <a href="{{ ml.href }}" onClick="{{ ml.onClick }}" style="{{ ml.style }}">{{ ml.label }}</a>
+        </sc-for>
+      </div>
+      <div style="{{ drawerFootStyle }}">
+        <div style="display:flex;gap:10px;margin-top:26px;">
+          <a href="tel:+918762473937" style="flex:1;text-align:center;background:#C89B5A;color:#090909;padding:15px 10px;border-radius:3px;font-size:11px;letter-spacing:1.8px;font-weight:600;text-decoration:none;">CALL US</a>
+          <a href="#visit" onClick="{{ onCloseMenu }}" style="flex:1;text-align:center;border:1px solid rgba(248,242,234,.25);color:#F8F2EA;padding:15px 10px;border-radius:3px;font-size:11px;letter-spacing:1.8px;font-weight:600;text-decoration:none;">VISIT US</a>
+        </div>
+        <div style="margin-top:18px;font-size:9.5px;letter-spacing:2.2px;color:rgba(248,242,234,.42);">OPEN DAILY · 8 AM – 11 PM · JAYANAGAR</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <header id="top" class="hero" onMouseMove="{{ onHeroMove }}" style="position:relative;z-index:1;max-width:1500px;margin:0 auto;padding:150px 40px 70px;display:grid;grid-template-columns:0.92fr 1.25fr;gap:30px;align-items:center;min-height:100vh;">
+    <!-- left copy -->
+    <div class="hero-copy">
+      <div class="hero-eyebrow" style="font-size:11px;letter-spacing:4px;color:#C89B5A;margin-bottom:30px;font-weight:500;">SPECIALTY COFFEE · DELICIOUS BITES · GOOD VIBES</div>
+      <h1 class="hero-h1" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(56px,6.4vw,108px);line-height:.94;letter-spacing:-1px;margin-bottom:6px;">
+        Brewed<br>to Perfection.<br><span style="font-style:italic;color:#C89B5A;font-weight:400;">Made for You.</span>
+      </h1>
+      <p class="hero-sub" style="max-width:380px;color:rgba(248,242,234,.62);font-size:15.5px;line-height:1.75;font-weight:300;margin:34px 0 40px;">
+        Alchemy Coffee Roasters is one of Jayanagar's favorite specialty cafés — handcrafted coffee, fresh food, artisanal beverages, and moments worth remembering.
+      </p>
+      <div class="hero-btns" style="display:flex;gap:16px;margin-bottom:54px;flex-wrap:wrap;">
+        <a href="#menu" style="background:{{ accent }};color:#090909;padding:17px 36px;font-size:12px;letter-spacing:2.5px;font-weight:600;text-decoration:none;border-radius:2px;transition:all .35s;box-shadow:0 14px 40px -14px rgba(200,155,90,.7);" style-hover="{ transform: 'translateY(-3px)', boxShadow: '0 22px 50px -14px rgba(200,155,90,.9)' }">EXPLORE MENU</a>
+        <a href="#about" style="border:1px solid rgba(248,242,234,.25);color:#F8F2EA;padding:17px 36px;font-size:12px;letter-spacing:2.5px;font-weight:500;text-decoration:none;border-radius:2px;transition:all .35s;" style-hover="{ borderColor: '#C89B5A', color: '#C89B5A' }">OUR STORY</a>
+      </div>
+      <div class="hero-stats" style="display:flex;gap:40px;flex-wrap:wrap;">
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:34px;color:#C89B5A;line-height:1;">4.5<span style="font-size:18px;">★</span></div>
+          <div style="font-size:10.5px;letter-spacing:1.5px;color:rgba(248,242,234,.5);margin-top:7px;">GOOGLE · THOUSANDS<br>OF REVIEWS</div>
+        </div>
+        <div style="width:1px;background:rgba(248,242,234,.14);"></div>
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:34px;color:#F8F2EA;line-height:1;">8–11</div>
+          <div style="font-size:10.5px;letter-spacing:1.5px;color:rgba(248,242,234,.5);margin-top:7px;">OPEN DAILY<br>8 AM – 11 PM</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- right: cinematic miniature hero -->
+    <div class="hero-visual" style="position:relative;">
+      <div style="position:absolute;inset:-8% -4% -8% -4%;background:radial-gradient(55% 55% at 60% 40%, rgba(200,155,90,.22), transparent 72%);filter:blur(20px);"></div>
+      <div class="hero-frame" style="position:relative;border-radius:8px;overflow:hidden;transform:translateX({{ heroPx }}px) translateY({{ heroPy }}px);transition:transform .5s cubic-bezier(.16,.84,.44,1);box-shadow:0 60px 120px -40px rgba(0,0,0,.9);">
+        <img class="hero-img" src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=1600&auto=format&fit=crop" alt="Alchemy Coffee Roasters interior" style="width:100%;height:560px;object-fit:cover;display:block;filter:saturate(1.05) contrast(1.03);">
+        <div style="position:absolute;inset:0;background:linear-gradient(160deg, rgba(9,9,9,.15), rgba(9,9,9,.55));"></div>
+        <!-- glow lights -->
+        <div style="position:absolute;top:24%;left:30%;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(200,155,90,.5),transparent 70%);animation:glowPulse 4s ease-in-out infinite;"></div>
+        <!-- floating cup w/ steam -->
+        <sc-if value="{{ showCup }}" hint-placeholder-val="{{ true }}">
+        <div class="hero-cup" style="position:absolute;bottom:-34px;left:-26px;width:210px;height:210px;border-radius:50%;overflow:hidden;border:6px solid #090909;box-shadow:0 30px 70px -20px rgba(0,0,0,.95);transform:translateX({{ cupPx }}px) translateY({{ cupPy }}px);transition:transform .7s cubic-bezier(.16,.84,.44,1);">
+          <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?q=80&w=900&auto=format&fit=crop" alt="latte art" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <!-- steam -->
+        <sc-for list="{{ steamPuffs }}" as="s" hint-placeholder-count="3">
+          <div class="hero-steam" style="position:absolute;bottom:120px;left:{{ s.left }}px;width:14px;height:80px;background:linear-gradient(to top, rgba(248,242,234,.5), transparent);border-radius:50%;filter:blur(7px);animation:steamRise {{ s.dur }}s ease-out infinite;animation-delay:{{ s.delay }}s;"></div>
+        </sc-for>
+        </sc-if>
+      </div>
+      <!-- info rail -->
+      <div class="hero-rail" style="position:absolute;top:50%;right:-18px;transform:translateY(-50%);background:rgba(25,25,25,.7);backdrop-filter:blur(14px);border:1px solid rgba(200,155,90,.22);border-radius:6px;padding:22px 24px;display:flex;flex-direction:column;gap:20px;min-width:170px;">
+        <div class="rail-item">
+          <div class="rail-lab" style="font-size:9px;letter-spacing:2px;color:#C89B5A;margin-bottom:5px;">OPEN DAILY</div>
+          <div class="rail-val" style="font-family:'Cormorant Garamond',serif;font-size:17px;">8 AM – 11 PM</div>
+        </div>
+        <div class="rail-div" style="height:1px;background:rgba(248,242,234,.12);"></div>
+        <div class="rail-item">
+          <div class="rail-lab" style="font-size:9px;letter-spacing:2px;color:#C89B5A;margin-bottom:5px;">CALL</div>
+          <a href="tel:+918762473937" class="rail-val" style="display:block;font-family:'Cormorant Garamond',serif;font-size:17px;color:inherit;text-decoration:none;white-space:nowrap;">087624 73937</a>
+        </div>
+        <div class="rail-div" style="height:1px;background:rgba(248,242,234,.12);"></div>
+        <div class="rail-item">
+          <div class="rail-lab" style="font-size:9px;letter-spacing:2px;color:#C89B5A;margin-bottom:5px;">ORDER ONLINE</div>
+          <div class="rail-val" style="font-family:'Cormorant Garamond',serif;font-size:17px;">Swiggy · Zomato</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" class="reveal sec about" style="position:relative;z-index:1;max-width:1300px;margin:0 auto;padding:120px 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+    <div class="about-media" style="position:relative;">
+      <img class="about-img" src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=1200&auto=format&fit=crop" alt="cafe craft" style="width:100%;height:540px;object-fit:cover;border-radius:6px;">
+      <img class="about-img2" src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=700&auto=format&fit=crop" alt="latte" style="position:absolute;bottom:-44px;right:-44px;width:230px;height:280px;object-fit:cover;border-radius:6px;border:8px solid #090909;box-shadow:0 30px 60px -24px rgba(0,0,0,.9);">
+      <div class="about-badge" style="position:absolute;top:-26px;left:-26px;background:#C89B5A;color:#090909;padding:18px 22px;border-radius:4px;text-align:center;">
+        <div class="b-1" style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;line-height:1;">Est.</div>
+        <div class="b-2" style="font-size:10px;letter-spacing:2px;margin-top:4px;">JAYANAGAR</div>
+      </div>
+    </div>
+    <div class="about-copy">
+      <div class="sec-eyebrow" style="font-size:11px;letter-spacing:4px;color:#C89B5A;margin-bottom:24px;">OUR STORY</div>
+      <h2 class="sec-h2" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,4vw,62px);line-height:1.02;letter-spacing:-.5px;margin-bottom:30px;">Where coffee<br>meets <span style="font-style:italic;color:#C89B5A;">craft.</span></h2>
+      <p style="color:rgba(248,242,234,.66);font-size:16px;line-height:1.85;font-weight:300;margin-bottom:22px;">
+        We are more than a café. We are curators of moments, brewers of experiences, and roasters of stories. Every cup begins with single-origin beans, roasted slowly in-house and brewed with patience.
+      </p>
+      <p style="color:rgba(248,242,234,.66);font-size:16px;line-height:1.85;font-weight:300;margin-bottom:40px;">
+        Fresh ingredients, honest hospitality, and a love for slow coffee bring our Jayanagar community together — one handcrafted moment at a time.
+      </p>
+      <div class="about-tags" style="display:flex;gap:14px;flex-wrap:wrap;">
+        <sc-for list="{{ aboutTags }}" as="t" hint-placeholder-count="4">
+          <span style="border:1px solid rgba(248,242,234,.18);padding:11px 20px;border-radius:40px;font-size:11.5px;letter-spacing:1.5px;color:rgba(248,242,234,.78);">{{ t }}</span>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section class="sec craft" style="position:relative;z-index:1;background:#0d0d0d;border-top:1px solid rgba(248,242,234,.06);border-bottom:1px solid rgba(248,242,234,.06);padding:110px 40px;">
+    <div style="max-width:1300px;margin:0 auto;">
+      <div class="reveal sec-head" style="text-align:center;margin-bottom:70px;">
+        <div class="sec-eyebrow" style="font-size:11px;letter-spacing:4px;color:#C89B5A;margin-bottom:20px;">THE CRAFT</div>
+        <h2 class="sec-h2" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(36px,4vw,58px);line-height:1.05;">From bean to <span style="font-style:italic;color:#C89B5A;">cup.</span></h2>
+      </div>
+      <div class="craft-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
+        <sc-for list="{{ craftSteps }}" as="c" hint-placeholder-count="4">
+          <div class="reveal craft-card" style="background:#191919;border:1px solid rgba(248,242,234,.06);border-radius:6px;padding:34px 28px;transition:all .4s;" style-hover="{ transform: 'translateY(-8px)', borderColor: 'rgba(200,155,90,.4)' }">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:44px;color:rgba(200,155,90,.35);line-height:1;margin-bottom:24px;">{{ c.no }}</div>
+            <h3 style="font-family:'Cormorant Garamond',serif;font-size:25px;margin-bottom:12px;">{{ c.title }}</h3>
+            <p style="color:rgba(248,242,234,.55);font-size:13.5px;line-height:1.7;font-weight:300;">{{ c.body }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MENU ============ -->
+  <section id="menu" class="sec menu" style="position:relative;z-index:1;max-width:1340px;margin:0 auto;padding:120px 40px;">
+    <div class="reveal menu-head" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;margin-bottom:46px;">
+      <div>
+        <div class="sec-eyebrow" style="font-size:11px;letter-spacing:4px;color:#C89B5A;margin-bottom:20px;">THE MENU</div>
+        <h2 class="sec-h2" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,4vw,62px);line-height:1;">Handcrafted, <span style="font-style:italic;color:#C89B5A;">all day.</span></h2>
+      </div>
+      <div class="menu-searchwrap" style="position:relative;">
+        <input class="menu-search" type="search" inputmode="search" value="{{ query }}" onInput="{{ onSearch }}" placeholder="Search the menu…" style="background:#131313;border:1px solid rgba(248,242,234,.14);border-radius:40px;padding:14px 22px 14px 46px;color:#F8F2EA;font-size:13px;width:260px;font-family:'Inter',sans-serif;outline:none;">
+        <span style="position:absolute;left:20px;top:50%;transform:translateY(-50%);color:#C89B5A;font-size:14px;pointer-events:none;">⌕</span>
+      </div>
+    </div>
+
+    <!-- tabs -->
+    <div class="menu-tabs" style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:46px;">
+      <sc-for list="{{ categories }}" as="cat" hint-placeholder-count="6">
+        <button onClick="{{ cat.onClick }}" style="{{ cat.style }}">{{ cat.label }}</button>
+      </sc-for>
+    </div>
+
+    <!-- cards -->
+    <div class="menu-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
+      <sc-for list="{{ visibleItems }}" as="item">
+        <div class="menu-card" style="{{ cardOuter }}" style-hover="{ transform: 'translateY(-10px)', borderColor: 'rgba(200,155,90,.45)', boxShadow: '0 40px 70px -30px rgba(0,0,0,.9)' }">
+          <div class="menu-imgwrap" style="position:relative;height:{{ cardImgH }};overflow:hidden;">
+            <img src="{{ item.img }}" alt="{{ item.name }}" style="width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,.84,.44,1);" style-hover="{ transform: 'scale(1.08)' }">
+            <sc-if value="{{ item.featured }}" hint-placeholder-val="{{ true }}">
+              <span style="position:absolute;top:12px;left:12px;background:rgba(200,155,90,.92);color:#090909;font-size:9px;letter-spacing:1.5px;font-weight:600;padding:6px 11px;border-radius:30px;">CHEF'S PICK</span>
+            </sc-if>
+            <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(9,9,9,.7), transparent 55%);"></div>
+            <sc-if value="{{ cardOverlay }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;left:20px;right:20px;bottom:18px;">
+                <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;">
+                  <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;line-height:1.1;">{{ item.name }}</h3>
+                  <span style="color:#C89B5A;font-size:16px;font-weight:600;white-space:nowrap;">{{ item.price }}</span>
+                </div>
+                <p style="color:rgba(248,242,234,.62);font-size:12px;line-height:1.55;font-weight:300;margin-top:7px;">{{ item.desc }}</p>
+              </div>
+            </sc-if>
+          </div>
+          <sc-if value="{{ cardStacked }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:22px 22px 24px;">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:9px;">
+              <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;line-height:1.1;">{{ item.name }}</h3>
+              <span style="color:#C89B5A;font-size:16px;font-weight:600;white-space:nowrap;">{{ item.price }}</span>
+            </div>
+            <p style="color:rgba(248,242,234,.5);font-size:12.5px;line-height:1.6;font-weight:300;">{{ item.desc }}</p>
+          </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+    <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+      <div style="text-align:center;color:rgba(248,242,234,.4);padding:60px 0;font-family:'Cormorant Garamond',serif;font-size:24px;font-style:italic;">No items match "{{ query }}"</div>
+    </sc-if>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section id="gallery" class="sec gallery" style="position:relative;z-index:1;background:#0d0d0d;border-top:1px solid rgba(248,242,234,.06);padding:110px 40px;">
+    <div style="max-width:1340px;margin:0 auto;">
+      <div class="reveal sec-head" style="text-align:center;margin-bottom:60px;">
+        <div class="sec-eyebrow" style="font-size:11px;letter-spacing:4px;color:#C89B5A;margin-bottom:20px;">GALLERY</div>
+        <h2 class="sec-h2" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(36px,4vw,58px);">Moments at <span style="font-style:italic;color:#C89B5A;">Alchemy.</span></h2>
+      </div>
+      <div class="gallery-grid" style="columns:3;column-gap:18px;">
+        <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="9">
+          <div class="gallery-item" style="break-inside:avoid;margin-bottom:18px;border-radius:6px;overflow:hidden;position:relative;">
+            <img src="{{ g.src }}" alt="gallery" style="width:100%;display:block;transition:all .6s;filter:saturate(1.02);" style-hover="{ transform: 'scale(1.05)', filter: 'saturate(1.15) brightness(1.05)' }">
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REVIEWS ============ -->
+  <section id="reviews" class="sec reviews" style="position:relative;z-index:1;max-width:1300px;margin:0 auto;padding:120px 40px;">
+    <div class="reviews-grid" style="display:grid;grid-template-columns:0.8fr 1.2fr;gap:70px;align-items:center;">
+      <div class="reveal">
+        <div class="sec-eyebrow" style="font-size:11px;letter-spacing:4px;color:#C89B5A;margin-bottom:24px;">WHAT PEOPLE SAY</div>
+        <div class="reviews-score" style="font-family:'Cormorant Garamond',serif;font-size:96px;line-height:.9;color:#C89B5A;">4.3<span style="font-size:34px;color:#F8F2EA;">/5</span></div>
+        <div style="color:#C89B5A;font-size:20px;letter-spacing:3px;margin:14px 0 10px;">★★★★<span style="opacity:.35">★</span></div>
+        <p style="color:rgba(248,242,234,.5);font-size:14px;margin-bottom:34px;">Based on 1,000+ Google reviews</p>
+        <div style="display:flex;gap:30px;">
+          <div><div style="font-family:'Cormorant Garamond',serif;font-size:28px;color:#F8F2EA;">4.2★</div><div style="font-size:10px;letter-spacing:2px;color:rgba(248,242,234,.5);margin-top:5px;">SWIGGY</div></div>
+          <div style="width:1px;background:rgba(248,242,234,.14);"></div>
+          <div><div style="font-family:'Cormorant Garamond',serif;font-size:28px;color:#F8F2EA;">4.1★</div><div style="font-size:10px;letter-spacing:2px;color:rgba(248,242,234,.5);margin-top:5px;">ZOMATO</div></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:18px;">
+        <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="3">
+          <div class="reveal review-card" style="background:#191919;border:1px solid rgba(248,242,234,.06);border-radius:8px;padding:30px 32px;transition:all .4s;" style-hover="{ borderColor: 'rgba(200,155,90,.35)', transform: 'translateX(8px)' }">
+            <div style="color:#C89B5A;font-size:14px;letter-spacing:2px;margin-bottom:14px;">★★★★★</div>
+            <p style="font-family:'Cormorant Garamond',serif;font-size:21px;font-style:italic;line-height:1.5;color:rgba(248,242,234,.9);margin-bottom:18px;">"{{ r.quote }}"</p>
+            <div style="font-size:11px;letter-spacing:2px;color:rgba(248,242,234,.5);">{{ r.name }} · GOOGLE REVIEW</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VISIT ============ -->
+  <section id="visit" class="sec visit" style="position:relative;z-index:1;background:#0d0d0d;border-top:1px solid rgba(248,242,234,.06);padding:110px 40px;">
+    <div class="visit-grid" style="max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:stretch;">
+      <div class="visit-media" style="position:relative;border-radius:8px;overflow:hidden;min-height:420px;">
+        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1200&auto=format&fit=crop" alt="cafe seating" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
+        <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(9,9,9,.2),rgba(9,9,9,.7));"></div>
+        <div class="visit-card" style="position:absolute;bottom:30px;left:30px;right:30px;background:rgba(25,25,25,.7);backdrop-filter:blur(14px);border:1px solid rgba(200,155,90,.25);border-radius:8px;padding:26px 28px;">
+          <div style="font-size:10px;letter-spacing:2px;color:#C89B5A;margin-bottom:8px;">FIND US</div>
+          <div class="v-addr" style="font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1.3;">36th Cross Road, 5th Block,<br>Jayanagar, Bengaluru 560041</div>
+        </div>
+      </div>
+      <div class="visit-copy">
+        <div class="sec-eyebrow" style="font-size:11px;letter-spacing:4px;color:#C89B5A;margin-bottom:24px;">VISIT US</div>
+        <h2 class="sec-h2" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,3.6vw,54px);line-height:1.02;margin-bottom:36px;">Come sit with <span style="font-style:italic;color:#C89B5A;">us.</span></h2>
+        <div class="visit-info" style="display:flex;flex-direction:column;gap:26px;margin-bottom:40px;">
+          <sc-for list="{{ visitInfo }}" as="v" hint-placeholder-count="3">
+            <div style="border-bottom:1px solid rgba(248,242,234,.1);padding-bottom:22px;">
+              <div style="font-size:10px;letter-spacing:2px;color:#C89B5A;margin-bottom:8px;">{{ v.label }}</div>
+              <div class="vi-val" style="font-family:'Cormorant Garamond',serif;font-size:22px;">{{ v.value }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div class="visit-btns" style="display:flex;gap:14px;flex-wrap:wrap;">
+          <a href="tel:+918762473937" style="background:#C89B5A;color:#090909;padding:16px 30px;font-size:11px;letter-spacing:2px;font-weight:600;text-decoration:none;border-radius:2px;transition:all .35s;" style-hover="{ transform:'translateY(-3px)' }">RESERVE A TABLE</a>
+          <a href="{{ mapsUrl }}" target="_blank" rel="noopener" style="border:1px solid rgba(248,242,234,.25);color:#F8F2EA;padding:16px 30px;font-size:11px;letter-spacing:2px;font-weight:500;text-decoration:none;border-radius:2px;transition:all .35s;" style-hover="{ borderColor:'#C89B5A',color:'#C89B5A' }">GET DIRECTIONS</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INSTAGRAM ============ -->
+  <section class="sec insta" style="position:relative;z-index:1;padding:100px 40px;text-align:center;">
+    <div style="max-width:1340px;margin:0 auto;">
+      <div class="reveal sec-head" style="margin-bottom:48px;">
+        <div class="sec-eyebrow" style="font-size:11px;letter-spacing:4px;color:#C89B5A;margin-bottom:18px;">@ALCHEMY_COFFEE_ROASTERS</div>
+        <h2 class="sec-h2" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,3.6vw,52px);">Follow the <span style="font-style:italic;color:#C89B5A;">feed.</span></h2>
+      </div>
+      <div class="insta-grid" style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:46px;">
+        <sc-for list="{{ insta }}" as="p" hint-placeholder-count="6">
+          <div style="aspect-ratio:1;border-radius:5px;overflow:hidden;position:relative;cursor:pointer;">
+            <img src="{{ p }}" alt="instagram" style="width:100%;height:100%;object-fit:cover;transition:all .5s;" style-hover="{ transform:'scale(1.1)' }">
+          </div>
+        </sc-for>
+      </div>
+      <a href="#top" style="display:inline-block;border:1px solid #C89B5A;color:#C89B5A;padding:16px 36px;font-size:11px;letter-spacing:2.5px;font-weight:600;text-decoration:none;border-radius:2px;transition:all .35s;" style-hover="{ background:'#C89B5A',color:'#090909' }">FOLLOW @ALCHEMY_COFFEE_ROASTERS</a>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" style="position:relative;z-index:1;background:#0a0a0a;border-top:1px solid rgba(248,242,234,.08);padding:70px 40px 36px;">
+    <div class="footer-grid" style="max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1.3fr;gap:50px;margin-bottom:54px;">
+      <div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+          <div style="width:30px;height:30px;border:1px solid #C89B5A;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#C89B5A;font-family:'Cormorant Garamond',serif;font-style:italic;">A</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:19px;letter-spacing:4px;">ALCHEMY</div>
+        </div>
+        <p style="color:rgba(248,242,234,.5);font-size:13.5px;line-height:1.8;font-weight:300;max-width:260px;">Specialty coffee, handcrafted with passion. Food made with love. Moments made for memories.</p>
+      </div>
+      <div>
+        <div style="font-size:10px;letter-spacing:2px;color:#C89B5A;margin-bottom:18px;">EXPLORE</div>
+        <sc-for list="{{ navLinks }}" as="l" hint-placeholder-count="5">
+          <a href="{{ l.href }}" style="display:block;color:rgba(248,242,234,.6);text-decoration:none;font-size:13.5px;margin-bottom:13px;transition:color .3s;" style-hover="{ color:'#C89B5A' }">{{ l.label }}</a>
+        </sc-for>
+      </div>
+      <div>
+        <div style="font-size:10px;letter-spacing:2px;color:#C89B5A;margin-bottom:18px;">HOURS</div>
+        <div style="color:rgba(248,242,234,.6);font-size:13.5px;line-height:1.9;">Open Daily<br>8:00 AM – 11:00 PM<br><br>+91 87624 73937</div>
+      </div>
+      <div class="footer-news">
+        <div style="font-size:10px;letter-spacing:2px;color:#C89B5A;margin-bottom:18px;">NEWSLETTER</div>
+        <p style="color:rgba(248,242,234,.5);font-size:13px;line-height:1.7;margin-bottom:16px;">Slow coffee notes, in your inbox.</p>
+        <div style="display:flex;border:1px solid rgba(248,242,234,.18);border-radius:3px;overflow:hidden;">
+          <input type="email" inputmode="email" autocomplete="email" placeholder="Email address" style="flex:1;min-width:0;background:transparent;border:none;padding:13px 16px;color:#F8F2EA;font-size:12.5px;outline:none;font-family:'Inter',sans-serif;">
+          <button aria-label="Subscribe" style="background:#C89B5A;color:#090909;border:none;padding:0 20px;font-size:11px;letter-spacing:1px;font-weight:600;cursor:pointer;">→</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom" style="max-width:1300px;margin:0 auto;border-top:1px solid rgba(248,242,234,.08);padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
+      <div style="font-size:12px;color:rgba(248,242,234,.4);">© 2026 Alchemy Coffee Roasters · Jayanagar, Bengaluru</div>
+      <div style="display:flex;gap:24px;font-size:11px;letter-spacing:1.5px;color:rgba(248,242,234,.5);">
+        <a href="#top" style="color:rgba(248,242,234,.5);text-decoration:none;" style-hover="{ color:'#C89B5A' }">INSTAGRAM</a>
+        <a href="#top" style="color:rgba(248,242,234,.5);text-decoration:none;" style-hover="{ color:'#C89B5A' }">SWIGGY</a>
+        <a href="#top" style="color:rgba(248,242,234,.5);text-decoration:none;" style-hover="{ color:'#C89B5A' }">ZOMATO</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ MOBILE STICKY ACTIONS ============ -->
+  <div class="m-actionbar" style="{{ actionBarStyle }}">
+    <a href="tel:+918762473937" style="border:1px solid rgba(200,155,90,.55);color:#C89B5A;">CALL</a>
+    <a href="#menu" style="border:1px solid rgba(248,242,234,.18);color:#F8F2EA;">MENU</a>
+    <a href="{{ mapsUrl }}" target="_blank" rel="noopener" style="background:#C89B5A;color:#090909;">DIRECTIONS</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1024},&quot;heroStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;cinematic&quot;,&quot;editorial&quot;],&quot;default&quot;:&quot;cinematic&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;cardStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;image-top&quot;,&quot;overlay&quot;],&quot;default&quot;:&quot;image-top&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Menu&quot;},&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:[&quot;#C89B5A&quot;,&quot;#B5894A&quot;,&quot;#A9743E&quot;,&quot;#CDA86A&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Theme&quot;}}">
+class Component extends DCLogic {
+  state = { scrolled: false, menuOpen: false, activeCat: 'Popular', query: '', heroPx: 0, heroPy: 0, cupPx: 0, cupPy: 0 };
+
+  componentDidMount() {
+    this._onScroll = () => {
+      const s = window.scrollY > 60;
+      if (s !== this.state.scrolled) this.setState({ scrolled: s });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+
+    // close the mobile drawer if the viewport grows back to desktop
+    this._onResize = () => { if (window.innerWidth > 900 && this.state.menuOpen) this.setMenu(false); };
+    window.addEventListener('resize', this._onResize, { passive: true });
+
+    // scroll reveal
+    this._io = new IntersectionObserver((ents) => {
+      ents.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); this._io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    setTimeout(() => {
+      document.querySelectorAll('.reveal').forEach((el, i) => {
+        el.style.animationDelay = (i % 4 * 0.08) + 's';
+        this._io.observe(el);
+      });
+    }, 60);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('resize', this._onResize);
+    this.lockScroll(false);
+    if (this._io) this._io.disconnect();
+  }
+
+  lockScroll(on) {
+    try { document.documentElement.style.overflow = on ? 'hidden' : ''; } catch (e) {}
+  }
+
+  setMenu = (open) => {
+    if (open === this.state.menuOpen) return;
+    this.setState({ menuOpen: open });
+    this.lockScroll(open);
+  };
+
+  onHeroMove = (e) => {
+    if (window.matchMedia && window.matchMedia('(hover: none)').matches) return;
+    const r = e.currentTarget.getBoundingClientRect();
+    const cx = (e.clientX - r.left) / r.width - 0.5;
+    const cy = (e.clientY - r.top) / r.height - 0.5;
+    this.setState({ heroPx: cx * 18, heroPy: cy * 14, cupPx: cx * -26, cupPy: cy * -18 });
+  };
+
+  data() {
+    const u = (id, w) => `https://images.unsplash.com/photo-${id}?q=80&w=${w||800}&auto=format&fit=crop`;
+    const items = [
+      { name:'Salted Caramel Latte', price:'₹195', cat:'Coffee', featured:true, desc:'Espresso, steamed milk, house salted caramel.', img:u('1461023058943-07fcbe16d735',800) },
+      { name:'Cafe Mocha', price:'₹195', cat:'Coffee', featured:false, desc:'Rich chocolate, double espresso, velvet foam.', img:u('1578314675249-a6910f80cc4e',800) },
+      { name:'Chemex Pour Over', price:'₹220', cat:'Coffee', featured:true, desc:'Single-origin, clean, bright, slow-brewed.', img:u('1495474472287-4d71bcdd2085',800) },
+      { name:'Filter Coffee Frappe', price:'₹150', cat:'Coffee', featured:false, desc:'South Indian filter, blended cold & frothy.', img:u('1517701550927-30cf4ba1dba5',800) },
+      { name:'Hot Chocolate', price:'₹240', cat:'Coffee', featured:false, desc:'Stone-ground cocoa, steamed to silk.', img:u('1542990253-0d0f5be5f0ed',800) },
+      { name:'Butter Croissant', price:'₹140', cat:'Bakery', featured:false, desc:'72-hour laminated, golden & flaky.', img:u('1555507036-ab1f4038808a',800) },
+      { name:'Nutella Croffle', price:'₹350', cat:'Bakery', featured:true, desc:'Croissant-waffle, Nutella, toasted hazelnut.', img:u('1612203985729-70726954388c',800) },
+      { name:"Chicken Croissan'wich", price:'₹360', cat:'Mains', featured:false, desc:'Grilled chicken, herbed mayo, flaky croissant.', img:u('1550547660-d9450f859349',800) },
+      { name:'Oriental Meal in a Bowl', price:'₹380', cat:'Mains', featured:true, desc:'Stir-fried greens, rice, oriental sauce.', img:u('1512058564366-18510be2db19',800) },
+      { name:'Grilled Chicken Sizzler', price:'₹480', cat:'Mains', featured:false, desc:'Smoky grilled chicken, veg, house sauce.', img:u('1544025162-d76694265947',800) },
+      { name:'Chettinad Chicken', price:'₹400', cat:'Mains', featured:false, desc:'Spiced South Indian classic, slow-cooked.', img:u('1631452180519-c014fe946bc7',800) },
+      { name:'Roasted Hazelnut Latte', price:'₹210', cat:'Coffee', featured:false, desc:'Toasted hazelnut, espresso, micro-foam.', img:u('1568649929103-28ffbefaca1e',800) },
+      { name:'Dark Chocolate Croffle', price:'₹360', cat:'Desserts', featured:false, desc:'Croffle, dark ganache, sea salt.', img:u('1606313564200-e75d5e30476c',800) },
+      { name:'Berry Smoothie', price:'₹220', cat:'Desserts', featured:false, desc:'Mixed berries, yoghurt, honey.', img:u('1553530666-ba11a7da3888',800) },
+      { name:'Avocado Toast', price:'₹290', cat:'Bakery', featured:false, desc:'Sourdough, smashed avocado, chilli, lime.', img:u('1482049016688-2d3e1b311543',800) },
+      { name:'Prawn Starter', price:'₹420', cat:'Mains', featured:false, desc:'Pan-seared prawns, garlic butter, herbs.', img:u('1565299624946-b28f40a0ae38',800) },
+    ];
+    return { items };
+  }
+
+  renderVals() {
+    const { items } = this.data();
+    const cats = ['Popular','Coffee','Bakery','Mains','Desserts'];
+    const active = this.state.activeCat;
+    const q = this.state.query.trim().toLowerCase();
+
+    let visible = items;
+    if (active === 'Popular') visible = items.filter(i => i.featured);
+    else visible = items.filter(i => i.cat === active);
+    if (q) visible = items.filter(i => i.name.toLowerCase().includes(q) || i.desc.toLowerCase().includes(q));
+
+    const accent = (Array.isArray(this.props.accentColor) ? this.props.accentColor[0] : this.props.accentColor) || '#C89B5A';
+    const overlay = (this.props.cardStyle === 'overlay');
+    const open = this.state.menuOpen;
+    const links = [
+      {label:'HOME',href:'#top'},{label:'OUR STORY',href:'#about'},{label:'MENU',href:'#menu'},
+      {label:'GALLERY',href:'#gallery'},{label:'REVIEWS',href:'#reviews'},{label:'VISIT',href:'#visit'},
+    ];
+    const burgerLine = `position:absolute;left:10px;top:50%;margin-top:-1px;width:22px;height:1.5px;border-radius:2px;background:${open ? '#C89B5A' : '#F8F2EA'};transition:transform .45s cubic-bezier(.16,.84,.44,1),background .3s;`;
+    const stagger = (i) => (open ? (0.14 + i * 0.055) : 0) + 's';
+
+    const tabStyle = (on) => `padding:13px 24px;border-radius:40px;font-size:12px;letter-spacing:1.5px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .3s;border:1px solid ${on?'#C89B5A':'rgba(248,242,234,.16)'};background:${on?'#C89B5A':'transparent'};color:${on?'#090909':'rgba(248,242,234,.7)'};`;
+
+    return {
+      accent,
+      showCup: this.props.heroStyle !== 'editorial',
+      cardOverlay: overlay,
+      cardStacked: !overlay,
+      cardImgH: overlay ? '320px' : '200px',
+      navStyle: `position:fixed;top:0;left:0;right:0;height:78px;z-index:50;transition:all .4s;background:${this.state.scrolled?'rgba(9,9,9,.82)':'transparent'};backdrop-filter:${this.state.scrolled?'blur(16px)':'none'};border-bottom:1px solid ${this.state.scrolled?'rgba(200,155,90,.16)':'transparent'};`,
+      navLinks: links,
+      mapsUrl: 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent('Alchemy Coffee Roasters, 36th Cross Rd, 5th Block, Jayanagar, Bengaluru 560041'),
+
+      // ---- mobile navigation ----
+      onToggleMenu: () => this.setMenu(!open),
+      onCloseMenu: () => this.setMenu(false),
+      burgerStyle: 'position:relative;width:42px;height:42px;margin-right:-9px;padding:0;background:transparent;border:none;cursor:pointer;',
+      burgerL1: burgerLine + `transform:translateY(${open ? 0 : -5}px) rotate(${open ? 45 : 0}deg);`,
+      burgerL2: burgerLine + `transform:translateY(${open ? 0 : 5}px) rotate(${open ? -45 : 0}deg);`,
+      drawerStyle: `background:rgba(6,6,6,.72);backdrop-filter:blur(8px);opacity:${open ? 1 : 0};pointer-events:${open ? 'auto' : 'none'};transition:opacity .45s ease;`,
+      drawerPanelStyle: `transform:translateY(${open ? '0' : '-104%'});transition:transform .55s cubic-bezier(.16,.84,.44,1);`,
+      mobileLinks: links.map((l, i) => ({
+        href: l.href,
+        label: l.label,
+        onClick: () => this.setMenu(false),
+        style: `display:block;padding:14px 2px;text-decoration:none;color:#F8F2EA;font-family:'Cormorant Garamond',serif;font-size:27px;letter-spacing:.5px;border-bottom:1px solid rgba(248,242,234,.07);opacity:${open ? 1 : 0};transform:translateY(${open ? 0 : 12}px);transition:opacity .5s ${stagger(i)},transform .6s cubic-bezier(.16,.84,.44,1) ${stagger(i)};`,
+      })),
+      drawerFootStyle: `opacity:${open ? 1 : 0};transform:translateY(${open ? 0 : 12}px);transition:opacity .5s ${stagger(links.length)},transform .6s cubic-bezier(.16,.84,.44,1) ${stagger(links.length)};`,
+      actionBarStyle: `transform:translateY(${this.state.scrolled && !open ? '0' : '120%'});transition:transform .5s cubic-bezier(.16,.84,.44,1);`,
+
+      onReserve: (e) => {},
+      onHeroMove: this.onHeroMove,
+      heroPx: this.state.heroPx, heroPy: this.state.heroPy,
+      cupPx: this.state.cupPx, cupPy: this.state.cupPy,
+      steamPuffs: [
+        { left: 70, dur: 4.5, delay: 0 },
+        { left: 95, dur: 5.5, delay: 1.2 },
+        { left: 120, dur: 5, delay: 2.4 },
+      ],
+      aboutTags: ['Community','Slow Coffee','House Roasting','Fresh Ingredients','Hospitality'],
+      craftSteps: [
+        { no:'01', title:'Sourcing', body:'Single-origin beans chosen from estates that share our standards.' },
+        { no:'02', title:'Roasting', body:'Roasted slowly in-house to coax out each origin\u2019s character.' },
+        { no:'03', title:'Brewing', body:'Chemex, Aeropress, espresso \u2014 dialed in, cup by cup.' },
+        { no:'04', title:'Serving', body:'Handcrafted drinks and fresh food, plated with care.' },
+      ],
+      categories: cats.map(c => ({ label: c, style: tabStyle(c === active && !q), onClick: () => this.setState({ activeCat: c, query: '' }) })),
+      query: this.state.query,
+      onSearch: (e) => this.setState({ query: e.target.value }),
+      visibleItems: visible,
+      noResults: visible.length === 0,
+      cardOuter: "background:#191919;border:1px solid rgba(248,242,234,.06);border-radius:8px;overflow:hidden;transition:all .45s cubic-bezier(.16,.84,.44,1);cursor:pointer;",
+      gallery: [
+        {src:'https://images.unsplash.com/photo-1453614512568-c4024d13c247?q=80&w=700&auto=format&fit=crop'},
+        {src:'https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=700&auto=format&fit=crop'},
+        {src:'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=700&auto=format&fit=crop'},
+        {src:'https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=700&auto=format&fit=crop'},
+        {src:'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=700&auto=format&fit=crop'},
+        {src:'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=700&auto=format&fit=crop'},
+        {src:'https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=700&auto=format&fit=crop'},
+        {src:'https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=700&auto=format&fit=crop'},
+        {src:'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=700&auto=format&fit=crop'},
+      ],
+      reviews: [
+        { quote:'Ambience 5/5. Food and drinks 5/5. A lovely place to slow down.', name:'PRIYA R.' },
+        { quote:'Tasty bites and a great variety of brews. The pour overs are special.', name:'KARTHIK M.' },
+        { quote:'Roasted vegetable lasagna and the oriental meal were amazing.', name:'ANANYA S.' },
+      ],
+      visitInfo: [
+        { label:'ADDRESS', value:'36th Cross Rd, 5th Block, Jayanagar 560041' },
+        { label:'PHONE', value:'+91 87624 73937' },
+        { label:'HOURS', value:'Open Daily · 8 AM – 11 PM' },
+      ],
+      insta: [
+        'https://images.unsplash.com/photo-1572442388796-11668a67e53d?q=80&w=500&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?q=80&w=500&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=500&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1612203985729-70726954388c?q=80&w=500&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1453614512568-c4024d13c247?q=80&w=500&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?q=80&w=500&auto=format&fit=crop',
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
